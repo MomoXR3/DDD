@@ -155,6 +155,7 @@ namespace DDD
         {
             attack.Enabled = true;
             Attacktimer.Stop();
+            
         }
     }
 }
