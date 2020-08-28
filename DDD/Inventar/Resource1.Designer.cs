@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DDD.Items {
+namespace DDD.Inventar {
     using System;
     
     
@@ -22,24 +22,24 @@ namespace DDD.Items {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class HealingPotion {
+    public class Resource1 {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
         
         [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal HealingPotion() {
+        internal Resource1() {
         }
         
         /// <summary>
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DDD.Items.HealingPotion", typeof(HealingPotion).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DDD.Inventar.Resource1", typeof(Resource1).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -51,7 +51,7 @@ namespace DDD.Items {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -61,47 +61,38 @@ namespace DDD.Items {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Heal ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
         /// </summary>
-        internal static string Effect {
+        public static string HalloWelt {
             get {
-                return ResourceManager.GetString("Effect", resourceCulture);
+                return ResourceManager.GetString("HalloWelt", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die healingpotion ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
         /// </summary>
-        internal static string ID {
+        public static string Rüstung {
             get {
-                return ResourceManager.GetString("ID", resourceCulture);
+                return ResourceManager.GetString("Rüstung", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die 100 ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
         /// </summary>
-        internal static string Intensity {
+        public static string Schild {
             get {
-                return ResourceManager.GetString("Intensity", resourceCulture);
+                return ResourceManager.GetString("Schild", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die HealingPotion ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Moonlord ähnelt.
         /// </summary>
-        internal static string Name {
+        public static string Schwert {
             get {
-                return ResourceManager.GetString("Name", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Potion ähnelt.
-        /// </summary>
-        internal static string Tag {
-            get {
-                return ResourceManager.GetString("Tag", resourceCulture);
+                return ResourceManager.GetString("Schwert", resourceCulture);
             }
         }
     }

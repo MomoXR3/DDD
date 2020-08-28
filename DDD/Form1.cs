@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.Security.Cryptography;
+using System.Drawing.Text;
 
 namespace DDD
 {
@@ -124,38 +125,32 @@ namespace DDD
         {
             if (inventarbox.Visible == true)
             {
+               
                 inventarbox.Visible = false;
+                inventorytimer.Stop();
             }
             else
             {
                 inventarbox.Visible = true;
+                inventorytimer.Start();
             }
         }
 
-        private void checkedListBox1_ItemCheck(object sender, ItemCheckEventArgs e)
-        {
-            if (checkedListBox1.CheckedItems.Count > 2)
-            {
-                if (checkedListBox1.GetItemChecked(1))
-                {
-                    checkedListBox1.SetItemChecked(1, false);
-                }
-                else
-                {
-                    if (checkedListBox1.GetItemChecked(2))
-                    {
-                        checkedListBox1.SetItemChecked(2, false);
-                    }
-                }
-
-            }
-        }
 
         private void Attacktimer_Tick(object sender, EventArgs e)
         {
             attack.Enabled = true;
             Attacktimer.Stop();
             
+        }
+
+        private void inventorytimer_Tick(object sender, EventArgs e)
+        {
+            string ausrüstung;
+            string ausr;
+
+            ausrüstung = Inventar.Resource1.Schwert;            
+            listView1.Items.Add(ausrüstung);
         }
     }
 }

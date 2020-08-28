@@ -74,11 +74,12 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.inventarbox = new System.Windows.Forms.GroupBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.dinge = new System.Windows.Forms.Button();
             this.rüstung = new System.Windows.Forms.Button();
             this.waffen = new System.Windows.Forms.Button();
             this.Attacktimer = new System.Windows.Forms.Timer(this.components);
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.inventorytimer = new System.Windows.Forms.Timer(this.components);
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -525,7 +526,7 @@
             // 
             // inventarbox
             // 
-            this.inventarbox.Controls.Add(this.checkedListBox1);
+            this.inventarbox.Controls.Add(this.listView1);
             this.inventarbox.Controls.Add(this.dinge);
             this.inventarbox.Controls.Add(this.rüstung);
             this.inventarbox.Controls.Add(this.waffen);
@@ -537,20 +538,6 @@
             this.inventarbox.Text = "Inventory";
             this.inventarbox.Visible = false;
             this.inventarbox.Enter += new System.EventHandler(this.groupBox1_Enter);
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Sonneneruption",
-            "Mitternacht ",
-            "Konrad das Ei ",
-            "Guten Tag"});
-            this.checkedListBox1.Location = new System.Drawing.Point(91, 13);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(317, 169);
-            this.checkedListBox1.TabIndex = 1;
-            this.checkedListBox1.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.checkedListBox1_ItemCheck);
             // 
             // dinge
             // 
@@ -585,6 +572,19 @@
             // 
             this.Attacktimer.Interval = 5000;
             this.Attacktimer.Tick += new System.EventHandler(this.Attacktimer_Tick);
+            // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(87, 19);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(321, 155);
+            this.listView1.TabIndex = 15;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
+            // inventorytimer
+            // 
+            this.inventorytimer.Tick += new System.EventHandler(this.inventorytimer_Tick);
             // 
             // Form1
             // 
@@ -673,8 +673,9 @@
         private System.Windows.Forms.Button rüstung;
         private System.Windows.Forms.Button waffen;
         private System.Windows.Forms.Button dinge;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
         private System.Windows.Forms.Timer Attacktimer;
+        private System.Windows.Forms.ListView listView1;
+        private System.Windows.Forms.Timer inventorytimer;
     }
 }
 
