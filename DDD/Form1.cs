@@ -145,12 +145,21 @@ namespace DDD
         }
 
         private void inventorytimer_Tick(object sender, EventArgs e)
-        {
+        {   
             string ausrüstung;
-            string ausr;
+            ausrüstung = Inventar.Resource1.Schwert;
+            ListViewItem ausr = new ListViewItem(ausrüstung);
+            bool sword = listView1.Items.Contains(ausr);
 
-            ausrüstung = Inventar.Resource1.Schwert;            
-            listView1.Items.Add(ausrüstung);
+            if (sword == false)
+            {
+                listView1.Items.Add(ausr);
+                inventorytimer.Stop();
+                
+            }
+
+
+
         }
     }
 }

@@ -74,11 +74,11 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.inventarbox = new System.Windows.Forms.GroupBox();
+            this.listView1 = new System.Windows.Forms.ListView();
             this.dinge = new System.Windows.Forms.Button();
             this.rüstung = new System.Windows.Forms.Button();
             this.waffen = new System.Windows.Forms.Button();
             this.Attacktimer = new System.Windows.Forms.Timer(this.components);
-            this.listView1 = new System.Windows.Forms.ListView();
             this.inventorytimer = new System.Windows.Forms.Timer(this.components);
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
@@ -539,6 +539,15 @@
             this.inventarbox.Visible = false;
             this.inventarbox.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
+            // listView1
+            // 
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(87, 19);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(321, 155);
+            this.listView1.TabIndex = 15;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            // 
             // dinge
             // 
             this.dinge.Location = new System.Drawing.Point(6, 111);
@@ -573,17 +582,9 @@
             this.Attacktimer.Interval = 5000;
             this.Attacktimer.Tick += new System.EventHandler(this.Attacktimer_Tick);
             // 
-            // listView1
-            // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(87, 19);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(321, 155);
-            this.listView1.TabIndex = 15;
-            this.listView1.UseCompatibleStateImageBehavior = false;
-            // 
             // inventorytimer
             // 
+            this.inventorytimer.Interval = 1000;
             this.inventorytimer.Tick += new System.EventHandler(this.inventorytimer_Tick);
             // 
             // Form1
