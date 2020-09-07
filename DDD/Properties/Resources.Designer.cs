@@ -22,7 +22,7 @@ namespace DDD.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Resources {
+    public class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -36,7 +36,7 @@ namespace DDD.Properties {
         ///   Gibt die zwischengespeicherte ResourceManager-Instanz zurück, die von dieser Klasse verwendet wird.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Resources.ResourceManager ResourceManager {
+        public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DDD.Properties.Resources", typeof(Resources).Assembly);
@@ -51,7 +51,7 @@ namespace DDD.Properties {
         ///   Ressourcenzuordnungen, die diese stark typisierte Ressourcenklasse verwenden.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static global::System.Globalization.CultureInfo Culture {
+        public static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -63,9 +63,9 @@ namespace DDD.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Fallout_4_Vault_Boy_Logo {
+        public static System.Drawing.Bitmap _8592_Pfeil_links {
             get {
-                object obj = ResourceManager.GetObject("Fallout-4-Vault-Boy-Logo", resourceCulture);
+                object obj = ResourceManager.GetObject("8592-Pfeil-links", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,7 +73,45 @@ namespace DDD.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap source {
+        public static System.Drawing.Bitmap _8594_Pfeil_rechts {
+            get {
+                object obj = ResourceManager.GetObject("8594-Pfeil-rechts", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Divinity_2___Main_Theme {
+            get {
+                return ResourceManager.GetStream("Divinity_2___Main_Theme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap Fallout_4_Vault_Boy_Logo {
+            get {
+                object obj = ResourceManager.GetObject("Fallout-4-Vault-Boy-Logo", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Schlag_1 {
+            get {
+                return ResourceManager.GetStream("Schlag_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap source {
             get {
                 object obj = ResourceManager.GetObject("source", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));

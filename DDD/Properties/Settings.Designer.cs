@@ -58,5 +58,17 @@ namespace DDD.Properties {
                 this["special"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string runde {
+            get {
+                return ((string)(this["runde"]));
+            }
+            set {
+                this["runde"] = value;
+            }
+        }
     }
 }

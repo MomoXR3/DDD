@@ -36,8 +36,6 @@
             this.attack = new System.Windows.Forms.Button();
             this.magic = new System.Windows.Forms.Button();
             this.inventory = new System.Windows.Forms.Button();
-            this.healthE = new System.Windows.Forms.ProgressBar();
-            this.health = new System.Windows.Forms.ProgressBar();
             this.spells = new System.Windows.Forms.GroupBox();
             this.tier3 = new System.Windows.Forms.Label();
             this.tier2 = new System.Windows.Forms.Label();
@@ -71,20 +69,32 @@
             this.hp = new System.Windows.Forms.Label();
             this.neu = new System.Windows.Forms.Button();
             this.shop = new System.Windows.Forms.Button();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.inventarbox = new System.Windows.Forms.GroupBox();
             this.listView1 = new System.Windows.Forms.ListView();
             this.dinge = new System.Windows.Forms.Button();
             this.rüstung = new System.Windows.Forms.Button();
             this.waffen = new System.Windows.Forms.Button();
-            this.Attacktimer = new System.Windows.Forms.Timer(this.components);
+            this.attacktimer = new System.Windows.Forms.Timer(this.components);
             this.inventorytimer = new System.Windows.Forms.Timer(this.components);
+            this.musicbox = new System.Windows.Forms.CheckBox();
+            this.music = new System.Windows.Forms.Timer(this.components);
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.healthE = new System.Windows.Forms.ProgressBar();
+            this.health = new System.Windows.Forms.ProgressBar();
+            this.deathtimer = new System.Windows.Forms.Timer(this.components);
+            this.die = new System.Windows.Forms.Label();
+            this.restart = new System.Windows.Forms.Button();
+            this.enemytimer1 = new System.Windows.Forms.Timer(this.components);
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
+            this.inventarbox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.inventarbox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar3
@@ -146,26 +156,6 @@
             this.inventory.Text = "Inventory";
             this.inventory.UseVisualStyleBackColor = true;
             this.inventory.Click += new System.EventHandler(this.inventory_Click);
-            // 
-            // healthE
-            // 
-            this.healthE.BackColor = System.Drawing.SystemColors.ControlText;
-            this.healthE.Cursor = System.Windows.Forms.Cursors.No;
-            this.healthE.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::DDD.Properties.Settings.Default, "HPE", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.healthE.Location = new System.Drawing.Point(1093, 63);
-            this.healthE.Name = "healthE";
-            this.healthE.Size = new System.Drawing.Size(296, 23);
-            this.healthE.TabIndex = 2;
-            this.healthE.Value = global::DDD.Properties.Settings.Default.HPE;
-            // 
-            // health
-            // 
-            this.health.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::DDD.Properties.Settings.Default, "HP", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.health.Location = new System.Drawing.Point(58, 63);
-            this.health.Name = "health";
-            this.health.Size = new System.Drawing.Size(296, 23);
-            this.health.TabIndex = 1;
-            this.health.Value = global::DDD.Properties.Settings.Default.HP;
             // 
             // spells
             // 
@@ -377,7 +367,6 @@
             this.magicbox.Size = new System.Drawing.Size(19, 20);
             this.magicbox.TabIndex = 8;
             this.magicbox.Text = "1";
-            this.magicbox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // attackbox
             // 
@@ -388,7 +377,6 @@
             this.attackbox.Size = new System.Drawing.Size(19, 20);
             this.attackbox.TabIndex = 8;
             this.attackbox.Text = "1";
-            this.attackbox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // skills
             // 
@@ -469,7 +457,7 @@
             this.hpe.AutoSize = true;
             this.hpe.BackColor = System.Drawing.Color.Red;
             this.hpe.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.hpe.Location = new System.Drawing.Point(1228, 63);
+            this.hpe.Location = new System.Drawing.Point(1232, 63);
             this.hpe.Name = "hpe";
             this.hpe.Size = new System.Drawing.Size(22, 13);
             this.hpe.TabIndex = 8;
@@ -480,11 +468,12 @@
             this.hp.AutoSize = true;
             this.hp.BackColor = System.Drawing.Color.Red;
             this.hp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.hp.Location = new System.Drawing.Point(182, 63);
+            this.hp.Location = new System.Drawing.Point(190, 63);
             this.hp.Name = "hp";
             this.hp.Size = new System.Drawing.Size(22, 13);
             this.hp.TabIndex = 8;
             this.hp.Text = "HP";
+            this.hp.Click += new System.EventHandler(this.hp_Click);
             // 
             // neu
             // 
@@ -506,24 +495,6 @@
             this.shop.UseVisualStyleBackColor = true;
             this.shop.Visible = false;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DDD.Properties.Resources.Fallout_4_Vault_Boy_Logo;
-            this.pictureBox2.Location = new System.Drawing.Point(1093, 146);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(296, 249);
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DDD.Properties.Resources.Fallout_4_Vault_Boy_Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(58, 146);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(296, 249);
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
             // inventarbox
             // 
             this.inventarbox.Controls.Add(this.listView1);
@@ -537,7 +508,6 @@
             this.inventarbox.TabStop = false;
             this.inventarbox.Text = "Inventory";
             this.inventarbox.Visible = false;
-            this.inventarbox.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // listView1
             // 
@@ -556,7 +526,6 @@
             this.dinge.TabIndex = 0;
             this.dinge.Text = "Things";
             this.dinge.UseVisualStyleBackColor = true;
-            this.dinge.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // rüstung
             // 
@@ -566,7 +535,6 @@
             this.rüstung.TabIndex = 0;
             this.rüstung.Text = "Armor";
             this.rüstung.UseVisualStyleBackColor = true;
-            this.rüstung.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // waffen
             // 
@@ -577,21 +545,139 @@
             this.waffen.Text = "Weapons";
             this.waffen.UseVisualStyleBackColor = true;
             // 
-            // Attacktimer
+            // attacktimer
             // 
-            this.Attacktimer.Interval = 5000;
-            this.Attacktimer.Tick += new System.EventHandler(this.Attacktimer_Tick);
+            this.attacktimer.Enabled = true;
+            this.attacktimer.Tick += new System.EventHandler(this.Attacktimer_Tick);
             // 
             // inventorytimer
             // 
             this.inventorytimer.Interval = 1000;
             this.inventorytimer.Tick += new System.EventHandler(this.inventorytimer_Tick);
             // 
+            // musicbox
+            // 
+            this.musicbox.AutoSize = true;
+            this.musicbox.Checked = true;
+            this.musicbox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.musicbox.Location = new System.Drawing.Point(1343, 771);
+            this.musicbox.Name = "musicbox";
+            this.musicbox.Size = new System.Drawing.Size(54, 17);
+            this.musicbox.TabIndex = 15;
+            this.musicbox.Text = "Musik";
+            this.musicbox.UseVisualStyleBackColor = true;
+            this.musicbox.CheckedChanged += new System.EventHandler(this.musicbox_CheckedChanged);
+            // 
+            // music
+            // 
+            this.music.Enabled = true;
+            this.music.Tick += new System.EventHandler(this.music_Tick);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.DarkGray;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox3.Image = global::DDD.Properties.Resources._8594_Pfeil_rechts;
+            this.pictureBox3.Location = new System.Drawing.Point(921, 224);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(153, 93);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 16;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DDD.Properties.Resources.source;
+            this.pictureBox2.Location = new System.Drawing.Point(1093, 146);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(296, 249);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DDD.Properties.Resources.source;
+            this.pictureBox1.Location = new System.Drawing.Point(58, 146);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(296, 249);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.DarkGray;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox4.Image = global::DDD.Properties.Resources._8592_Pfeil_links;
+            this.pictureBox4.Location = new System.Drawing.Point(376, 224);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(153, 93);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 16;
+            this.pictureBox4.TabStop = false;
+            // 
+            // healthE
+            // 
+            this.healthE.BackColor = System.Drawing.SystemColors.ControlText;
+            this.healthE.Cursor = System.Windows.Forms.Cursors.No;
+            this.healthE.Location = new System.Drawing.Point(1093, 63);
+            this.healthE.Name = "healthE";
+            this.healthE.Size = new System.Drawing.Size(296, 23);
+            this.healthE.TabIndex = 2;
+            this.healthE.Value = global::DDD.Properties.Settings.Default.HPE;
+            // 
+            // health
+            // 
+            this.health.Location = new System.Drawing.Point(58, 63);
+            this.health.Name = "health";
+            this.health.Size = new System.Drawing.Size(296, 23);
+            this.health.TabIndex = 1;
+            this.health.Value = global::DDD.Properties.Settings.Default.HP;
+            // 
+            // deathtimer
+            // 
+            this.deathtimer.Enabled = true;
+            this.deathtimer.Tick += new System.EventHandler(this.deathtimer_Tick);
+            // 
+            // die
+            // 
+            this.die.Font = new System.Drawing.Font("Overseer", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.die.Location = new System.Drawing.Point(376, 9);
+            this.die.Name = "die";
+            this.die.Size = new System.Drawing.Size(698, 136);
+            this.die.TabIndex = 17;
+            this.die.Text = "You died";
+            this.die.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.die.Visible = false;
+            // 
+            // restart
+            // 
+            this.restart.Font = new System.Drawing.Font("Overseer", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.restart.Location = new System.Drawing.Point(565, 218);
+            this.restart.Name = "restart";
+            this.restart.Size = new System.Drawing.Size(312, 99);
+            this.restart.TabIndex = 18;
+            this.restart.Text = "Restart";
+            this.restart.UseVisualStyleBackColor = true;
+            this.restart.Visible = false;
+            this.restart.Click += new System.EventHandler(this.restart_Click);
+            // 
+            // enemytimer1
+            // 
+            this.enemytimer1.Interval = 1500;
+            this.enemytimer1.Tick += new System.EventHandler(this.enemytimer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1447, 819);
+            this.Controls.Add(this.restart);
+            this.Controls.Add(this.die);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.musicbox);
             this.Controls.Add(this.inventarbox);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
@@ -611,15 +697,18 @@
             this.Controls.Add(this.specialE);
             this.Controls.Add(this.healthE);
             this.Controls.Add(this.health);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
             this.spells.ResumeLayout(false);
             this.spells.PerformLayout();
             this.characterbox.ResumeLayout(false);
             this.characterbox.PerformLayout();
+            this.inventarbox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.inventarbox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -674,9 +763,17 @@
         private System.Windows.Forms.Button rüstung;
         private System.Windows.Forms.Button waffen;
         private System.Windows.Forms.Button dinge;
-        private System.Windows.Forms.Timer Attacktimer;
+        private System.Windows.Forms.Timer attacktimer;
         private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Timer inventorytimer;
+        private System.Windows.Forms.Timer music;
+        public System.Windows.Forms.CheckBox musicbox;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Timer deathtimer;
+        private System.Windows.Forms.Label die;
+        private System.Windows.Forms.Button restart;
+        private System.Windows.Forms.Timer enemytimer1;
     }
 }
 
