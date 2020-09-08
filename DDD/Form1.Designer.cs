@@ -54,6 +54,8 @@
             this.fireball = new System.Windows.Forms.Button();
             this.character = new System.Windows.Forms.Button();
             this.characterbox = new System.Windows.Forms.GroupBox();
+            this.levelbox = new System.Windows.Forms.Label();
+            this.xpbox = new System.Windows.Forms.Label();
             this.defencebox = new System.Windows.Forms.TextBox();
             this.magicbox = new System.Windows.Forms.TextBox();
             this.attackbox = new System.Windows.Forms.TextBox();
@@ -61,9 +63,7 @@
             this.defenseskill = new System.Windows.Forms.Label();
             this.magicskill = new System.Windows.Forms.Label();
             this.attackskill = new System.Windows.Forms.Label();
-            this.xpbox = new System.Windows.Forms.TextBox();
             this.xp = new System.Windows.Forms.Label();
-            this.levelbox = new System.Windows.Forms.TextBox();
             this.level = new System.Windows.Forms.Label();
             this.hpe = new System.Windows.Forms.Label();
             this.hp = new System.Windows.Forms.Label();
@@ -78,23 +78,24 @@
             this.inventorytimer = new System.Windows.Forms.Timer(this.components);
             this.musicbox = new System.Windows.Forms.CheckBox();
             this.music = new System.Windows.Forms.Timer(this.components);
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.enemyturn = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.healthE = new System.Windows.Forms.ProgressBar();
-            this.health = new System.Windows.Forms.ProgressBar();
+            this.yourturn = new System.Windows.Forms.PictureBox();
             this.deathtimer = new System.Windows.Forms.Timer(this.components);
             this.die = new System.Windows.Forms.Label();
             this.restart = new System.Windows.Forms.Button();
             this.enemytimer1 = new System.Windows.Forms.Timer(this.components);
+            this.deathtimerE = new System.Windows.Forms.Timer(this.components);
+            this.healthE = new System.Windows.Forms.ProgressBar();
+            this.health = new System.Windows.Forms.ProgressBar();
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
             this.inventarbox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyturn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yourturn)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar3
@@ -329,6 +330,8 @@
             // 
             // characterbox
             // 
+            this.characterbox.Controls.Add(this.levelbox);
+            this.characterbox.Controls.Add(this.xpbox);
             this.characterbox.Controls.Add(this.defencebox);
             this.characterbox.Controls.Add(this.magicbox);
             this.characterbox.Controls.Add(this.attackbox);
@@ -336,9 +339,7 @@
             this.characterbox.Controls.Add(this.defenseskill);
             this.characterbox.Controls.Add(this.magicskill);
             this.characterbox.Controls.Add(this.attackskill);
-            this.characterbox.Controls.Add(this.xpbox);
             this.characterbox.Controls.Add(this.xp);
-            this.characterbox.Controls.Add(this.levelbox);
             this.characterbox.Controls.Add(this.level);
             this.characterbox.Location = new System.Drawing.Point(849, 609);
             this.characterbox.Name = "characterbox";
@@ -347,6 +348,28 @@
             this.characterbox.TabStop = false;
             this.characterbox.Text = "Character";
             this.characterbox.Visible = false;
+            // 
+            // levelbox
+            // 
+            this.levelbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.levelbox.Location = new System.Drawing.Point(53, 25);
+            this.levelbox.Name = "levelbox";
+            this.levelbox.Size = new System.Drawing.Size(37, 20);
+            this.levelbox.TabIndex = 9;
+            this.levelbox.Text = "1";
+            this.levelbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.levelbox.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // xpbox
+            // 
+            this.xpbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xpbox.Location = new System.Drawing.Point(53, 47);
+            this.xpbox.Name = "xpbox";
+            this.xpbox.Size = new System.Drawing.Size(37, 20);
+            this.xpbox.TabIndex = 9;
+            this.xpbox.Text = "0";
+            this.xpbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.xpbox.Click += new System.EventHandler(this.label1_Click);
             // 
             // defencebox
             // 
@@ -414,16 +437,6 @@
             this.attackskill.TabIndex = 4;
             this.attackskill.Text = "Attack";
             // 
-            // xpbox
-            // 
-            this.xpbox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.xpbox.Location = new System.Drawing.Point(53, 48);
-            this.xpbox.Name = "xpbox";
-            this.xpbox.ReadOnly = true;
-            this.xpbox.Size = new System.Drawing.Size(34, 20);
-            this.xpbox.TabIndex = 3;
-            this.xpbox.Text = "0";
-            // 
             // xp
             // 
             this.xp.AutoSize = true;
@@ -432,16 +445,6 @@
             this.xp.Size = new System.Drawing.Size(21, 13);
             this.xp.TabIndex = 2;
             this.xp.Text = "XP";
-            // 
-            // levelbox
-            // 
-            this.levelbox.Cursor = System.Windows.Forms.Cursors.Arrow;
-            this.levelbox.Location = new System.Drawing.Point(53, 26);
-            this.levelbox.Name = "levelbox";
-            this.levelbox.ReadOnly = true;
-            this.levelbox.Size = new System.Drawing.Size(19, 20);
-            this.levelbox.TabIndex = 1;
-            this.levelbox.Text = "1";
             // 
             // level
             // 
@@ -573,17 +576,18 @@
             this.music.Enabled = true;
             this.music.Tick += new System.EventHandler(this.music_Tick);
             // 
-            // pictureBox3
+            // enemyturn
             // 
-            this.pictureBox3.BackColor = System.Drawing.Color.DarkGray;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox3.Image = global::DDD.Properties.Resources._8594_Pfeil_rechts;
-            this.pictureBox3.Location = new System.Drawing.Point(921, 224);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(153, 93);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 16;
-            this.pictureBox3.TabStop = false;
+            this.enemyturn.BackColor = System.Drawing.Color.DarkGray;
+            this.enemyturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.enemyturn.Image = global::DDD.Properties.Resources._8594_Pfeil_rechts;
+            this.enemyturn.Location = new System.Drawing.Point(921, 224);
+            this.enemyturn.Name = "enemyturn";
+            this.enemyturn.Size = new System.Drawing.Size(153, 93);
+            this.enemyturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.enemyturn.TabIndex = 16;
+            this.enemyturn.TabStop = false;
+            this.enemyturn.Visible = false;
             // 
             // pictureBox2
             // 
@@ -605,35 +609,18 @@
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
             // 
-            // pictureBox4
+            // yourturn
             // 
-            this.pictureBox4.BackColor = System.Drawing.Color.DarkGray;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox4.Image = global::DDD.Properties.Resources._8592_Pfeil_links;
-            this.pictureBox4.Location = new System.Drawing.Point(376, 224);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(153, 93);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox4.TabIndex = 16;
-            this.pictureBox4.TabStop = false;
-            // 
-            // healthE
-            // 
-            this.healthE.BackColor = System.Drawing.SystemColors.ControlText;
-            this.healthE.Cursor = System.Windows.Forms.Cursors.No;
-            this.healthE.Location = new System.Drawing.Point(1093, 63);
-            this.healthE.Name = "healthE";
-            this.healthE.Size = new System.Drawing.Size(296, 23);
-            this.healthE.TabIndex = 2;
-            this.healthE.Value = global::DDD.Properties.Settings.Default.HPE;
-            // 
-            // health
-            // 
-            this.health.Location = new System.Drawing.Point(58, 63);
-            this.health.Name = "health";
-            this.health.Size = new System.Drawing.Size(296, 23);
-            this.health.TabIndex = 1;
-            this.health.Value = global::DDD.Properties.Settings.Default.HP;
+            this.yourturn.BackColor = System.Drawing.Color.DarkGray;
+            this.yourturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.yourturn.Image = global::DDD.Properties.Resources._8592_Pfeil_links;
+            this.yourturn.Location = new System.Drawing.Point(376, 224);
+            this.yourturn.Name = "yourturn";
+            this.yourturn.Size = new System.Drawing.Size(153, 93);
+            this.yourturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.yourturn.TabIndex = 16;
+            this.yourturn.TabStop = false;
+            this.yourturn.Visible = false;
             // 
             // deathtimer
             // 
@@ -668,6 +655,29 @@
             this.enemytimer1.Interval = 1500;
             this.enemytimer1.Tick += new System.EventHandler(this.enemytimer1_Tick);
             // 
+            // deathtimerE
+            // 
+            this.deathtimerE.Enabled = true;
+            this.deathtimerE.Tick += new System.EventHandler(this.deathtimerE_Tick);
+            // 
+            // healthE
+            // 
+            this.healthE.BackColor = System.Drawing.SystemColors.ControlText;
+            this.healthE.Cursor = System.Windows.Forms.Cursors.No;
+            this.healthE.Location = new System.Drawing.Point(1093, 63);
+            this.healthE.Name = "healthE";
+            this.healthE.Size = new System.Drawing.Size(296, 23);
+            this.healthE.TabIndex = 2;
+            this.healthE.Value = global::DDD.Properties.Settings.Default.HPE;
+            // 
+            // health
+            // 
+            this.health.Location = new System.Drawing.Point(58, 63);
+            this.health.Name = "health";
+            this.health.Size = new System.Drawing.Size(296, 23);
+            this.health.TabIndex = 1;
+            this.health.Value = global::DDD.Properties.Settings.Default.HP;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -675,8 +685,8 @@
             this.ClientSize = new System.Drawing.Size(1447, 819);
             this.Controls.Add(this.restart);
             this.Controls.Add(this.die);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.yourturn);
+            this.Controls.Add(this.enemyturn);
             this.Controls.Add(this.musicbox);
             this.Controls.Add(this.inventarbox);
             this.Controls.Add(this.pictureBox2);
@@ -700,15 +710,16 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.spells.ResumeLayout(false);
             this.spells.PerformLayout();
             this.characterbox.ResumeLayout(false);
             this.characterbox.PerformLayout();
             this.inventarbox.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.enemyturn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.yourturn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -742,10 +753,8 @@
         private System.Windows.Forms.Label tier3;
         private System.Windows.Forms.Button character;
         private System.Windows.Forms.GroupBox characterbox;
-        private System.Windows.Forms.TextBox levelbox;
         private System.Windows.Forms.Label level;
         private System.Windows.Forms.Label xp;
-        private System.Windows.Forms.TextBox xpbox;
         private System.Windows.Forms.Label defenseskill;
         private System.Windows.Forms.Label magicskill;
         private System.Windows.Forms.Label attackskill;
@@ -768,12 +777,15 @@
         private System.Windows.Forms.Timer inventorytimer;
         private System.Windows.Forms.Timer music;
         public System.Windows.Forms.CheckBox musicbox;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox enemyturn;
+        private System.Windows.Forms.PictureBox yourturn;
         private System.Windows.Forms.Timer deathtimer;
         private System.Windows.Forms.Label die;
         private System.Windows.Forms.Button restart;
         private System.Windows.Forms.Timer enemytimer1;
+        private System.Windows.Forms.Timer deathtimerE;
+        private System.Windows.Forms.Label xpbox;
+        private System.Windows.Forms.Label levelbox;
     }
 }
 

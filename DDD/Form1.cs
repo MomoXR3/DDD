@@ -15,10 +15,12 @@ using System.Runtime.Remoting.Messaging;
 using NAudio;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
+using RandomNumber;
 
 
 namespace DDD
 {
+    
 
     public partial class Form1 : Form
     {
@@ -31,9 +33,7 @@ namespace DDD
         {
             InitializeComponent();
 
-
         }
-
 
 
         private int LPF = 0;
@@ -44,7 +44,7 @@ namespace DDD
             string runde2;
 
             LPF = healthE.Value;
-            LPF = LPF - 30;
+            LPF = LPF - Randomness.getNextInt(1, 30);
             if (LPF < 0)
             {
                 LPF = 0;
@@ -119,12 +119,15 @@ namespace DDD
             if (runde < 1)
             {
                 attack.Enabled = true;
+                yourturn.Visible = true;
+                enemyturn.Visible = false;
             }
             else
             {
                 attack.Enabled = false;
                 enemytimer1.Start();
-
+                yourturn.Visible = false;
+                enemyturn.Visible = true;
 
 
 
@@ -180,7 +183,7 @@ namespace DDD
         LOOP:
             if (runde > 0)
             {
-                hp = hp - 30;
+                hp = hp - Randomness.getNextInt(1, 30);
                 if (hp < 0)
                 {
                     hp = 0;
@@ -226,6 +229,7 @@ namespace DDD
         { Respawnsound();
             health.Value = 100;
             healthE.Value = 100;
+            dungeonprogress.Value = 0;
             attacktimer.Start();
             die.Visible = false;
             restart.Visible = false;
@@ -340,10 +344,6 @@ namespace DDD
             enemytimer1.Stop();
         }
 
-        private void MusicWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            test();
-        }
 
 
         private void test()
@@ -359,6 +359,35 @@ namespace DDD
                 outputDevice.Init(audioFile);
             }
             outputDevice.Play();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deathtimerE_Tick(object sender, EventArgs e)
+        {
+            if (healthE.Value < 1)
+            {
+                enemytimer1.Stop();
+                runde = 0;
+                int ep = Convert.ToInt32(xpbox.Text) + Randomness.getNextInt(1000, 10000);
+                xpbox.Text = ep.ToString();
+                int random;
+                random = Randomness.getNextInt(1, 50);
+                dungeonprogress.Value = dungeonprogress.Value + random;
+                if(dungeonprogress.Value > 100)
+                {
+                    dungeonprogress.Value = 100;
+                }
+                healthE.Value = 100;
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
             
