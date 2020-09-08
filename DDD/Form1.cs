@@ -229,6 +229,10 @@ namespace DDD
         { Respawnsound();
             health.Value = 100;
             healthE.Value = 100;
+            levelxp = 20000;
+            levelbox.Text = 1.ToString();
+            xpbox.Text = 0.ToString();
+            nextlevelxp.Text = levelxp.ToString();
             dungeonprogress.Value = 0;
             attacktimer.Start();
             die.Visible = false;
@@ -374,13 +378,16 @@ namespace DDD
                 runde = 0;
                 int ep = Convert.ToInt32(xpbox.Text) + Randomness.getNextInt(1000, 10000);
                 xpbox.Text = ep.ToString();
+                leveltimer.Start();
                 int random;
                 random = Randomness.getNextInt(1, 50);
-                dungeonprogress.Value = dungeonprogress.Value + random;
-                if(dungeonprogress.Value > 100)
+                int dp = dungeonprogress.Value;
+                dp = dungeonprogress.Value + random;
+                if(dp > 100)
                 {
-                    dungeonprogress.Value = 100;
+                    dp = 100;
                 }
+                dungeonprogress.Value = dp;
                 healthE.Value = 100;
             }
         }
@@ -389,6 +396,100 @@ namespace DDD
         {
 
         }
+
+        int levelxp = 20000;
+        
+        private void leveltimer_Tick(object sender, EventArgs e)
+        {
+            
+            if (Convert.ToInt32(xpbox.Text) >= levelxp)
+            {
+                nextlevel();
+                leveltimer.Stop();
+
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            healthE.Value = 0;
+        }
+
+
+        private void nextlevel()
+        {
+            int skillvariable = Convert.ToInt32(skillpointsbox.Text);
+           
+            int lb = Convert.ToInt32(levelbox.Text);
+            lb = lb + 1;
+            levelbox.Text = lb.ToString();
+            levelxp = levelxp + levelxp;
+            levelxp = levelxp + Randomness.getNextInt(2000, 6000);
+            nextlevelxp.Text = levelxp.ToString();
+            skillvariable = skillvariable + 1;
+            skillpointsbox.Text = skillvariable.ToString();
+            leveltimer.Start();
+        }
+
+        private void skillpointstimer_Tick(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(skillpointsbox.Text) > 0)
+            {
+                skillpointstimer.Stop();
+                defenseplus.Enabled = true;
+                attackplus.Enabled = true;
+                magicplus.Enabled = true;
+                skillpointstimer.Start();
+            }
+
+
+            else
+            {
+                skillpointstimer.Stop();
+                defenseplus.Enabled = false;
+                attackplus.Enabled = false;
+                magicplus.Enabled = false;
+                skillpointstimer.Start();
+            }
+        }
+
+
+        private void attackplus_Click(object sender, EventArgs e)
+        {
+            int ab = Convert.ToInt32(attackbox.Text);
+            int spb = Convert.ToInt32(skillpointsbox.Text);
+            ab = ab + 1;
+            spb = spb - 1;
+            attackbox.Text = ab.ToString();
+            skillpointsbox.Text = spb.ToString();
+        }
+
+        private void magicplus_Click(object sender, EventArgs e)
+        {
+            int ab = Convert.ToInt32(magicbox.Text);
+            int spb = Convert.ToInt32(skillpointsbox.Text);
+            ab = ab + 1;
+            spb = spb - 1;
+            magicbox.Text = ab.ToString();
+            skillpointsbox.Text = spb.ToString();
+
+        }
+
+        private void defenseplus_Click(object sender, EventArgs e)
+        {
+            int ab = Convert.ToInt32(defencebox.Text);
+            int spb = Convert.ToInt32(skillpointsbox.Text);
+            ab = ab + 1;
+            spb = spb - 1;
+            defencebox.Text = ab.ToString();
+            skillpointsbox.Text = spb.ToString();
+
+        }
+
+ 
+
+
+
     }
             
         

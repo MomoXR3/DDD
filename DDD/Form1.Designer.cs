@@ -54,6 +54,12 @@
             this.fireball = new System.Windows.Forms.Button();
             this.character = new System.Windows.Forms.Button();
             this.characterbox = new System.Windows.Forms.GroupBox();
+            this.skillpointsbox = new System.Windows.Forms.Label();
+            this.skillpoints = new System.Windows.Forms.Label();
+            this.defenseplus = new System.Windows.Forms.Button();
+            this.magicplus = new System.Windows.Forms.Button();
+            this.attackplus = new System.Windows.Forms.Button();
+            this.nextlevelxp = new System.Windows.Forms.Label();
             this.levelbox = new System.Windows.Forms.Label();
             this.xpbox = new System.Windows.Forms.Label();
             this.defencebox = new System.Windows.Forms.TextBox();
@@ -89,6 +95,9 @@
             this.deathtimerE = new System.Windows.Forms.Timer(this.components);
             this.healthE = new System.Windows.Forms.ProgressBar();
             this.health = new System.Windows.Forms.ProgressBar();
+            this.leveltimer = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.skillpointstimer = new System.Windows.Forms.Timer(this.components);
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
             this.inventarbox.SuspendLayout();
@@ -186,7 +195,7 @@
             // tier3
             // 
             this.tier3.AutoSize = true;
-            this.tier3.Location = new System.Drawing.Point(320, 16);
+            this.tier3.Location = new System.Drawing.Point(278, 16);
             this.tier3.Name = "tier3";
             this.tier3.Size = new System.Drawing.Size(34, 13);
             this.tier3.TabIndex = 1;
@@ -195,7 +204,7 @@
             // tier2
             // 
             this.tier2.AutoSize = true;
-            this.tier2.Location = new System.Drawing.Point(186, 16);
+            this.tier2.Location = new System.Drawing.Point(145, 16);
             this.tier2.Name = "tier2";
             this.tier2.Size = new System.Drawing.Size(34, 13);
             this.tier2.TabIndex = 1;
@@ -204,7 +213,7 @@
             // tier1
             // 
             this.tier1.AutoSize = true;
-            this.tier1.Location = new System.Drawing.Point(50, 16);
+            this.tier1.Location = new System.Drawing.Point(12, 17);
             this.tier1.Name = "tier1";
             this.tier1.Size = new System.Drawing.Size(34, 13);
             this.tier1.TabIndex = 1;
@@ -330,6 +339,12 @@
             // 
             // characterbox
             // 
+            this.characterbox.Controls.Add(this.skillpointsbox);
+            this.characterbox.Controls.Add(this.skillpoints);
+            this.characterbox.Controls.Add(this.defenseplus);
+            this.characterbox.Controls.Add(this.magicplus);
+            this.characterbox.Controls.Add(this.attackplus);
+            this.characterbox.Controls.Add(this.nextlevelxp);
             this.characterbox.Controls.Add(this.levelbox);
             this.characterbox.Controls.Add(this.xpbox);
             this.characterbox.Controls.Add(this.defencebox);
@@ -349,6 +364,74 @@
             this.characterbox.Text = "Character";
             this.characterbox.Visible = false;
             // 
+            // skillpointsbox
+            // 
+            this.skillpointsbox.AutoSize = true;
+            this.skillpointsbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.skillpointsbox.Location = new System.Drawing.Point(219, 111);
+            this.skillpointsbox.Name = "skillpointsbox";
+            this.skillpointsbox.Size = new System.Drawing.Size(14, 13);
+            this.skillpointsbox.TabIndex = 13;
+            this.skillpointsbox.Text = "0";
+            // 
+            // skillpoints
+            // 
+            this.skillpoints.AutoSize = true;
+            this.skillpoints.Location = new System.Drawing.Point(154, 111);
+            this.skillpoints.Name = "skillpoints";
+            this.skillpoints.Size = new System.Drawing.Size(54, 13);
+            this.skillpoints.TabIndex = 12;
+            this.skillpoints.Text = "Skillpoints";
+            // 
+            // defenseplus
+            // 
+            this.defenseplus.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.defenseplus.Enabled = false;
+            this.defenseplus.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.defenseplus.Location = new System.Drawing.Point(103, 160);
+            this.defenseplus.Name = "defenseplus";
+            this.defenseplus.Size = new System.Drawing.Size(20, 20);
+            this.defenseplus.TabIndex = 11;
+            this.defenseplus.Text = "+";
+            this.defenseplus.UseVisualStyleBackColor = true;
+            this.defenseplus.Click += new System.EventHandler(this.defenseplus_Click);
+            // 
+            // magicplus
+            // 
+            this.magicplus.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.magicplus.Enabled = false;
+            this.magicplus.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.magicplus.Location = new System.Drawing.Point(103, 134);
+            this.magicplus.Name = "magicplus";
+            this.magicplus.Size = new System.Drawing.Size(20, 20);
+            this.magicplus.TabIndex = 11;
+            this.magicplus.Text = "+";
+            this.magicplus.UseVisualStyleBackColor = true;
+            this.magicplus.Click += new System.EventHandler(this.magicplus_Click);
+            // 
+            // attackplus
+            // 
+            this.attackplus.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.attackplus.Enabled = false;
+            this.attackplus.Font = new System.Drawing.Font("Arial Black", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.attackplus.Location = new System.Drawing.Point(103, 108);
+            this.attackplus.Name = "attackplus";
+            this.attackplus.Size = new System.Drawing.Size(20, 20);
+            this.attackplus.TabIndex = 11;
+            this.attackplus.Text = "+";
+            this.attackplus.UseVisualStyleBackColor = true;
+            this.attackplus.Click += new System.EventHandler(this.attackplus_Click);
+            // 
+            // nextlevelxp
+            // 
+            this.nextlevelxp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nextlevelxp.Location = new System.Drawing.Point(154, 47);
+            this.nextlevelxp.Name = "nextlevelxp";
+            this.nextlevelxp.Size = new System.Drawing.Size(100, 20);
+            this.nextlevelxp.TabIndex = 10;
+            this.nextlevelxp.Text = "20000";
+            this.nextlevelxp.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // levelbox
             // 
             this.levelbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -357,7 +440,7 @@
             this.levelbox.Size = new System.Drawing.Size(37, 20);
             this.levelbox.TabIndex = 9;
             this.levelbox.Text = "1";
-            this.levelbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.levelbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.levelbox.Click += new System.EventHandler(this.label1_Click);
             // 
             // xpbox
@@ -365,10 +448,10 @@
             this.xpbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xpbox.Location = new System.Drawing.Point(53, 47);
             this.xpbox.Name = "xpbox";
-            this.xpbox.Size = new System.Drawing.Size(37, 20);
+            this.xpbox.Size = new System.Drawing.Size(140, 20);
             this.xpbox.TabIndex = 9;
             this.xpbox.Text = "0";
-            this.xpbox.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.xpbox.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.xpbox.Click += new System.EventHandler(this.label1_Click);
             // 
             // defencebox
@@ -415,9 +498,9 @@
             this.defenseskill.AutoSize = true;
             this.defenseskill.Location = new System.Drawing.Point(14, 162);
             this.defenseskill.Name = "defenseskill";
-            this.defenseskill.Size = new System.Drawing.Size(48, 13);
+            this.defenseskill.Size = new System.Drawing.Size(47, 13);
             this.defenseskill.TabIndex = 6;
-            this.defenseskill.Text = "Defence";
+            this.defenseskill.Text = "Defense";
             // 
             // magicskill
             // 
@@ -678,11 +761,33 @@
             this.health.TabIndex = 1;
             this.health.Value = global::DDD.Properties.Settings.Default.HP;
             // 
+            // leveltimer
+            // 
+            this.leveltimer.Enabled = true;
+            this.leveltimer.Tick += new System.EventHandler(this.leveltimer_Tick);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1116, 523);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 19;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // skillpointstimer
+            // 
+            this.skillpointstimer.Enabled = true;
+            this.skillpointstimer.Interval = 50;
+            this.skillpointstimer.Tick += new System.EventHandler(this.skillpointstimer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1447, 819);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.restart);
             this.Controls.Add(this.die);
             this.Controls.Add(this.yourturn);
@@ -707,6 +812,7 @@
             this.Controls.Add(this.specialE);
             this.Controls.Add(this.healthE);
             this.Controls.Add(this.health);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -786,6 +892,15 @@
         private System.Windows.Forms.Timer deathtimerE;
         private System.Windows.Forms.Label xpbox;
         private System.Windows.Forms.Label levelbox;
+        private System.Windows.Forms.Timer leveltimer;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label nextlevelxp;
+        private System.Windows.Forms.Label skillpointsbox;
+        private System.Windows.Forms.Label skillpoints;
+        private System.Windows.Forms.Button defenseplus;
+        private System.Windows.Forms.Button magicplus;
+        private System.Windows.Forms.Button attackplus;
+        private System.Windows.Forms.Timer skillpointstimer;
     }
 }
 
