@@ -76,10 +76,16 @@
             this.neu = new System.Windows.Forms.Button();
             this.shop = new System.Windows.Forms.Button();
             this.inventarbox = new System.Windows.Forms.GroupBox();
-            this.listView1 = new System.Windows.Forms.ListView();
-            this.dinge = new System.Windows.Forms.Button();
-            this.rüstung = new System.Windows.Forms.Button();
-            this.waffen = new System.Windows.Forms.Button();
+            this.potions = new System.Windows.Forms.GroupBox();
+            this.manalabel = new System.Windows.Forms.Label();
+            this.heallabel = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.bhealing = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.mhealing = new System.Windows.Forms.Button();
+            this.shealing = new System.Windows.Forms.Button();
+            this.killme = new System.Windows.Forms.Button();
             this.attacktimer = new System.Windows.Forms.Timer(this.components);
             this.inventorytimer = new System.Windows.Forms.Timer(this.components);
             this.musicbox = new System.Windows.Forms.CheckBox();
@@ -93,18 +99,25 @@
             this.restart = new System.Windows.Forms.Button();
             this.enemytimer1 = new System.Windows.Forms.Timer(this.components);
             this.deathtimerE = new System.Windows.Forms.Timer(this.components);
+            this.leveltimer = new System.Windows.Forms.Timer(this.components);
+            this.killenemy = new System.Windows.Forms.Button();
+            this.skillpointstimer = new System.Windows.Forms.Timer(this.components);
+            this.dungeontimer = new System.Windows.Forms.Timer(this.components);
+            this.debugbox = new System.Windows.Forms.GroupBox();
+            this.debugtimer = new System.Windows.Forms.Timer(this.components);
             this.healthE = new System.Windows.Forms.ProgressBar();
             this.health = new System.Windows.Forms.ProgressBar();
-            this.leveltimer = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
-            this.skillpointstimer = new System.Windows.Forms.Timer(this.components);
+            this.dungeonlevel = new System.Windows.Forms.Label();
+            this.dungeonlevelbox = new System.Windows.Forms.Label();
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
             this.inventarbox.SuspendLayout();
+            this.potions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.enemyturn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.yourturn)).BeginInit();
+            this.debugbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar3
@@ -462,7 +475,8 @@
             this.defencebox.ReadOnly = true;
             this.defencebox.Size = new System.Drawing.Size(19, 20);
             this.defencebox.TabIndex = 8;
-            this.defencebox.Text = "1";
+            this.defencebox.Tag = "Skillsbox";
+            this.defencebox.Text = "0";
             // 
             // magicbox
             // 
@@ -472,7 +486,8 @@
             this.magicbox.ReadOnly = true;
             this.magicbox.Size = new System.Drawing.Size(19, 20);
             this.magicbox.TabIndex = 8;
-            this.magicbox.Text = "1";
+            this.magicbox.Tag = "Skillsbox";
+            this.magicbox.Text = "0";
             // 
             // attackbox
             // 
@@ -482,7 +497,8 @@
             this.attackbox.ReadOnly = true;
             this.attackbox.Size = new System.Drawing.Size(19, 20);
             this.attackbox.TabIndex = 8;
-            this.attackbox.Text = "1";
+            this.attackbox.Tag = "Skillsbox";
+            this.attackbox.Text = "0";
             // 
             // skills
             // 
@@ -583,10 +599,7 @@
             // 
             // inventarbox
             // 
-            this.inventarbox.Controls.Add(this.listView1);
-            this.inventarbox.Controls.Add(this.dinge);
-            this.inventarbox.Controls.Add(this.rüstung);
-            this.inventarbox.Controls.Add(this.waffen);
+            this.inventarbox.Controls.Add(this.potions);
             this.inventarbox.Location = new System.Drawing.Point(376, 390);
             this.inventarbox.Name = "inventarbox";
             this.inventarbox.Size = new System.Drawing.Size(425, 188);
@@ -595,41 +608,107 @@
             this.inventarbox.Text = "Inventory";
             this.inventarbox.Visible = false;
             // 
-            // listView1
+            // potions
             // 
-            this.listView1.HideSelection = false;
-            this.listView1.Location = new System.Drawing.Point(87, 19);
-            this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(321, 155);
-            this.listView1.TabIndex = 15;
-            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.potions.Controls.Add(this.manalabel);
+            this.potions.Controls.Add(this.heallabel);
+            this.potions.Controls.Add(this.button5);
+            this.potions.Controls.Add(this.bhealing);
+            this.potions.Controls.Add(this.button4);
+            this.potions.Controls.Add(this.button1);
+            this.potions.Controls.Add(this.mhealing);
+            this.potions.Controls.Add(this.shealing);
+            this.potions.Location = new System.Drawing.Point(222, 10);
+            this.potions.Name = "potions";
+            this.potions.Size = new System.Drawing.Size(197, 137);
+            this.potions.TabIndex = 1;
+            this.potions.TabStop = false;
+            this.potions.Text = "Potions";
             // 
-            // dinge
+            // manalabel
             // 
-            this.dinge.Location = new System.Drawing.Point(6, 111);
-            this.dinge.Name = "dinge";
-            this.dinge.Size = new System.Drawing.Size(61, 27);
-            this.dinge.TabIndex = 0;
-            this.dinge.Text = "Things";
-            this.dinge.UseVisualStyleBackColor = true;
+            this.manalabel.AutoSize = true;
+            this.manalabel.Location = new System.Drawing.Point(116, 31);
+            this.manalabel.Name = "manalabel";
+            this.manalabel.Size = new System.Drawing.Size(34, 13);
+            this.manalabel.TabIndex = 2;
+            this.manalabel.Text = "Mana";
             // 
-            // rüstung
+            // heallabel
             // 
-            this.rüstung.Location = new System.Drawing.Point(6, 78);
-            this.rüstung.Name = "rüstung";
-            this.rüstung.Size = new System.Drawing.Size(61, 27);
-            this.rüstung.TabIndex = 0;
-            this.rüstung.Text = "Armor";
-            this.rüstung.UseVisualStyleBackColor = true;
+            this.heallabel.AutoSize = true;
+            this.heallabel.Location = new System.Drawing.Point(39, 31);
+            this.heallabel.Name = "heallabel";
+            this.heallabel.Size = new System.Drawing.Size(29, 13);
+            this.heallabel.TabIndex = 1;
+            this.heallabel.Text = "Heal";
             // 
-            // waffen
+            // button5
             // 
-            this.waffen.Location = new System.Drawing.Point(6, 45);
-            this.waffen.Name = "waffen";
-            this.waffen.Size = new System.Drawing.Size(61, 27);
-            this.waffen.TabIndex = 0;
-            this.waffen.Text = "Weapons";
-            this.waffen.UseVisualStyleBackColor = true;
+            this.button5.Location = new System.Drawing.Point(101, 105);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 0;
+            this.button5.Text = "Big";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // bhealing
+            // 
+            this.bhealing.Location = new System.Drawing.Point(20, 105);
+            this.bhealing.Name = "bhealing";
+            this.bhealing.Size = new System.Drawing.Size(75, 23);
+            this.bhealing.TabIndex = 0;
+            this.bhealing.Text = "Big";
+            this.bhealing.UseVisualStyleBackColor = true;
+            this.bhealing.Click += new System.EventHandler(this.bhealing_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(101, 76);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 0;
+            this.button4.Text = "Medium";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(101, 47);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 0;
+            this.button1.Text = "Small";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // mhealing
+            // 
+            this.mhealing.Location = new System.Drawing.Point(20, 76);
+            this.mhealing.Name = "mhealing";
+            this.mhealing.Size = new System.Drawing.Size(75, 23);
+            this.mhealing.TabIndex = 0;
+            this.mhealing.Text = "Medium";
+            this.mhealing.UseVisualStyleBackColor = true;
+            this.mhealing.Click += new System.EventHandler(this.mhealing_Click);
+            // 
+            // shealing
+            // 
+            this.shealing.Location = new System.Drawing.Point(20, 47);
+            this.shealing.Name = "shealing";
+            this.shealing.Size = new System.Drawing.Size(75, 23);
+            this.shealing.TabIndex = 0;
+            this.shealing.Text = "Small";
+            this.shealing.UseVisualStyleBackColor = true;
+            this.shealing.Click += new System.EventHandler(this.shealing_Click);
+            // 
+            // killme
+            // 
+            this.killme.Location = new System.Drawing.Point(30, 31);
+            this.killme.Name = "killme";
+            this.killme.Size = new System.Drawing.Size(75, 24);
+            this.killme.TabIndex = 1;
+            this.killme.Text = "killme";
+            this.killme.UseVisualStyleBackColor = true;
+            this.killme.Click += new System.EventHandler(this.button2_Click);
             // 
             // attacktimer
             // 
@@ -743,6 +822,48 @@
             this.deathtimerE.Enabled = true;
             this.deathtimerE.Tick += new System.EventHandler(this.deathtimerE_Tick);
             // 
+            // leveltimer
+            // 
+            this.leveltimer.Enabled = true;
+            this.leveltimer.Tick += new System.EventHandler(this.leveltimer_Tick);
+            // 
+            // killenemy
+            // 
+            this.killenemy.Location = new System.Drawing.Point(30, 67);
+            this.killenemy.Name = "killenemy";
+            this.killenemy.Size = new System.Drawing.Size(75, 23);
+            this.killenemy.TabIndex = 19;
+            this.killenemy.Text = "killenemy";
+            this.killenemy.UseVisualStyleBackColor = true;
+            this.killenemy.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // skillpointstimer
+            // 
+            this.skillpointstimer.Enabled = true;
+            this.skillpointstimer.Interval = 50;
+            this.skillpointstimer.Tick += new System.EventHandler(this.skillpointstimer_Tick);
+            // 
+            // dungeontimer
+            // 
+            this.dungeontimer.Enabled = true;
+            this.dungeontimer.Tick += new System.EventHandler(this.dungeontimer_Tick);
+            // 
+            // debugbox
+            // 
+            this.debugbox.Controls.Add(this.killme);
+            this.debugbox.Controls.Add(this.killenemy);
+            this.debugbox.Location = new System.Drawing.Point(1086, 456);
+            this.debugbox.Name = "debugbox";
+            this.debugbox.Size = new System.Drawing.Size(289, 121);
+            this.debugbox.TabIndex = 20;
+            this.debugbox.TabStop = false;
+            this.debugbox.Text = "Debug";
+            // 
+            // debugtimer
+            // 
+            this.debugtimer.Enabled = true;
+            this.debugtimer.Tick += new System.EventHandler(this.debugtimer_Tick);
+            // 
             // healthE
             // 
             this.healthE.BackColor = System.Drawing.SystemColors.ControlText;
@@ -761,33 +882,32 @@
             this.health.TabIndex = 1;
             this.health.Value = global::DDD.Properties.Settings.Default.HP;
             // 
-            // leveltimer
+            // dungeonlevel
             // 
-            this.leveltimer.Enabled = true;
-            this.leveltimer.Tick += new System.EventHandler(this.leveltimer_Tick);
+            this.dungeonlevel.Font = new System.Drawing.Font("Overseer", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dungeonlevel.Location = new System.Drawing.Point(606, 114);
+            this.dungeonlevel.Name = "dungeonlevel";
+            this.dungeonlevel.Size = new System.Drawing.Size(195, 45);
+            this.dungeonlevel.TabIndex = 21;
+            this.dungeonlevel.Text = "Dungeonlevel";
             // 
-            // button1
+            // dungeonlevelbox
             // 
-            this.button1.Location = new System.Drawing.Point(1116, 523);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 19;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // skillpointstimer
-            // 
-            this.skillpointstimer.Enabled = true;
-            this.skillpointstimer.Interval = 50;
-            this.skillpointstimer.Tick += new System.EventHandler(this.skillpointstimer_Tick);
+            this.dungeonlevelbox.Font = new System.Drawing.Font("Overseer", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dungeonlevelbox.Location = new System.Drawing.Point(807, 114);
+            this.dungeonlevelbox.Name = "dungeonlevelbox";
+            this.dungeonlevelbox.Size = new System.Drawing.Size(53, 45);
+            this.dungeonlevelbox.TabIndex = 21;
+            this.dungeonlevelbox.Text = "0";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1447, 819);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dungeonlevelbox);
+            this.Controls.Add(this.dungeonlevel);
+            this.Controls.Add(this.debugbox);
             this.Controls.Add(this.restart);
             this.Controls.Add(this.die);
             this.Controls.Add(this.yourturn);
@@ -822,10 +942,13 @@
             this.characterbox.ResumeLayout(false);
             this.characterbox.PerformLayout();
             this.inventarbox.ResumeLayout(false);
+            this.potions.ResumeLayout(false);
+            this.potions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.enemyturn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.yourturn)).EndInit();
+            this.debugbox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -875,11 +998,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.GroupBox inventarbox;
-        private System.Windows.Forms.Button rüstung;
-        private System.Windows.Forms.Button waffen;
-        private System.Windows.Forms.Button dinge;
         private System.Windows.Forms.Timer attacktimer;
-        private System.Windows.Forms.ListView listView1;
         private System.Windows.Forms.Timer inventorytimer;
         private System.Windows.Forms.Timer music;
         public System.Windows.Forms.CheckBox musicbox;
@@ -893,7 +1012,7 @@
         private System.Windows.Forms.Label xpbox;
         private System.Windows.Forms.Label levelbox;
         private System.Windows.Forms.Timer leveltimer;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button killenemy;
         private System.Windows.Forms.Label nextlevelxp;
         private System.Windows.Forms.Label skillpointsbox;
         private System.Windows.Forms.Label skillpoints;
@@ -901,6 +1020,21 @@
         private System.Windows.Forms.Button magicplus;
         private System.Windows.Forms.Button attackplus;
         private System.Windows.Forms.Timer skillpointstimer;
+        private System.Windows.Forms.Timer dungeontimer;
+        private System.Windows.Forms.Button killme;
+        private System.Windows.Forms.GroupBox debugbox;
+        private System.Windows.Forms.Timer debugtimer;
+        private System.Windows.Forms.Label dungeonlevel;
+        private System.Windows.Forms.Label dungeonlevelbox;
+        private System.Windows.Forms.GroupBox potions;
+        private System.Windows.Forms.Button bhealing;
+        private System.Windows.Forms.Button mhealing;
+        private System.Windows.Forms.Button shealing;
+        private System.Windows.Forms.Label manalabel;
+        private System.Windows.Forms.Label heallabel;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button1;
     }
 }
 

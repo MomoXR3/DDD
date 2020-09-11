@@ -83,9 +83,27 @@ namespace DDD.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
-        public static System.IO.UnmanagedMemoryStream Divinity_2___Main_Theme {
+        public static System.IO.UnmanagedMemoryStream Close {
             get {
-                return ResourceManager.GetStream("Divinity_2___Main_Theme", resourceCulture);
+                return ResourceManager.GetStream("Close", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Dead {
+            get {
+                return ResourceManager.GetStream("Dead", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Dunka_Dunka {
+            get {
+                return ResourceManager.GetStream("Dunka_Dunka", resourceCulture);
             }
         }
         
@@ -102,9 +120,36 @@ namespace DDD.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
+        public static System.IO.UnmanagedMemoryStream Open {
+            get {
+                return ResourceManager.GetStream("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Respawn {
+            get {
+                return ResourceManager.GetStream("Respawn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
         public static System.IO.UnmanagedMemoryStream Schlag_1 {
             get {
                 return ResourceManager.GetStream("Schlag_1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Schlag_2 {
+            get {
+                return ResourceManager.GetStream("Schlag_2", resourceCulture);
             }
         }
         

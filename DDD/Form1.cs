@@ -16,7 +16,7 @@ using NAudio;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using RandomNumber;
-
+using System.Security.Permissions;
 
 namespace DDD
 {
@@ -32,7 +32,6 @@ namespace DDD
         public Form1()
         {
             InitializeComponent();
-
         }
 
 
@@ -40,11 +39,11 @@ namespace DDD
 
         private void attack_Click(object sender, EventArgs e)
         {
-
-            string runde2;
+            int ab = Convert.ToInt32(attackbox.Text) * 5;
+            int random = Randomness.getNextInt(1, 30) + ab;
 
             LPF = healthE.Value;
-            LPF = LPF - Randomness.getNextInt(1, 30);
+            LPF = LPF - random;
             if (LPF < 0)
             {
                 LPF = 0;
@@ -136,17 +135,6 @@ namespace DDD
 
         private void inventorytimer_Tick(object sender, EventArgs e)
         {
-            string ausrüstung;
-            ausrüstung = Inventar.Resource1.Schwert;
-            ListViewItem ausr = new ListViewItem(ausrüstung);
-            bool sword = listView1.Items.Contains(ausr);
-
-            if (sword == false)
-            {
-                listView1.Items.Add(ausr);
-                inventorytimer.Stop();
-
-            }
 
 
 
@@ -156,15 +144,17 @@ namespace DDD
         {
             if (musicbox.Checked == true)
             {
-                test();
-
+                waveOut = null;
+                Music();
             }
+
             else
             {
-                outputDevice?.Stop();
+                waveOut.Stop();
 
             }
         }
+
 
         private void musicbox_CheckedChanged(object sender, EventArgs e)
         {
@@ -183,7 +173,12 @@ namespace DDD
         LOOP:
             if (runde > 0)
             {
-                hp = hp - Randomness.getNextInt(1, 30);
+                int random = Randomness.getNextInt(1, 30) - Convert.ToInt32(defencebox.Text);
+                if (random < 0)
+                {
+                    random = 0;
+                }
+                hp = hp - random;
                 if (hp < 0)
                 {
                     hp = 0;
@@ -208,6 +203,9 @@ namespace DDD
             if (health.Value < 1)
             { Deadsound();
                 attacktimer.Stop();
+                dungeonlevel.Visible = false;
+                dungeonlevelbox.Visible = false;
+                dungeonlevelbox.Text = 0.ToString();
                 die.Visible = true;
                 restart.Visible = true;
                 foreach (Control c in Controls)
@@ -231,12 +229,18 @@ namespace DDD
             healthE.Value = 100;
             levelxp = 20000;
             levelbox.Text = 1.ToString();
+            attackbox.Text = 0.ToString();
+            defencebox.Text = 0.ToString();
+            magicbox.Text = 0.ToString();
+            skillpointsbox.Text = 0.ToString();
             xpbox.Text = 0.ToString();
             nextlevelxp.Text = levelxp.ToString();
             dungeonprogress.Value = 0;
             attacktimer.Start();
             die.Visible = false;
             restart.Visible = false;
+            dungeonlevel.Visible = true;
+            dungeonlevelbox.Visible = true;
             foreach (Control c in Controls)
             {
                 Button b = c as Button;
@@ -254,7 +258,7 @@ namespace DDD
         {
             System.Media.SoundPlayer player =
             new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Sound\Schlag 1.wav";
+            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Schlag 1.wav";
             player.Load();
             player.Play();
 
@@ -264,7 +268,7 @@ namespace DDD
         {
             System.Media.SoundPlayer player =
             new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Sound\Schlag 2.wav";
+            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Schlag 2.wav";
             player.Load();
             player.Play();
 
@@ -274,7 +278,7 @@ namespace DDD
         {
             System.Media.SoundPlayer player =
             new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Sound\Open.wav";
+            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Open.wav";
             player.Play();
 
         }
@@ -284,7 +288,7 @@ namespace DDD
         {
             System.Media.SoundPlayer player =
             new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Sound\Close.wav";
+            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Close.wav";
             player.Load();
             player.Play();
 
@@ -299,7 +303,7 @@ namespace DDD
         {
             System.Media.SoundPlayer player =
             new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Sound\Respawn.wav";
+            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Respawn.wav";
             player.Load();
             player.Play();
 
@@ -310,7 +314,7 @@ namespace DDD
         {
             System.Media.SoundPlayer player =
             new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Sound\Dead.wav";
+            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Dead.wav";
             player.Load();
             player.Play();
 
@@ -318,25 +322,26 @@ namespace DDD
 
 
 
-
+        private WaveOut waveOut;
         private void Music()
         {
 
-            System.Media.SoundPlayer musicplayer =
-            new System.Media.SoundPlayer();
-
-            if (musicbox.Checked == true)
-            {
-                musicplayer.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Sound\Walking in the Air.wav";
-                musicplayer.Play();
-                music.Stop();
-            }
-            else
-            {
-                music.Start();
-                musicplayer.Stop();
-
-            }
+                    music.Stop();
+                    if (waveOut == null)
+                    {
+                        WaveFileReader reader = new WaveFileReader(@"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Dunka Dunka.wav");
+                        LoopStream loop = new LoopStream(reader);
+                        waveOut = new WaveOut();
+                        waveOut.Init(loop);
+                        waveOut.Play();
+                    
+                    }
+                    else
+                    {
+                        waveOut.Stop();
+                        waveOut.Dispose();
+                        waveOut = null;
+                    }
         }
 
 
@@ -350,20 +355,6 @@ namespace DDD
 
 
 
-        private void test()
-        {
-            if (outputDevice == null)
-            {
-                outputDevice = new WaveOutEvent();
-                //outputDevice.PlaybackStopped += OnPlaybackStopped;
-            }
-            if (audioFile == null)
-            {
-                audioFile = new AudioFileReader(@"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Sound\Walking in the Air.wav");
-                outputDevice.Init(audioFile);
-            }
-            outputDevice.Play();
-        }
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -376,7 +367,10 @@ namespace DDD
             {
                 enemytimer1.Stop();
                 runde = 0;
-                int ep = Convert.ToInt32(xpbox.Text) + Randomness.getNextInt(1000, 10000);
+                int randomep = Randomness.getNextInt(1000, 10000);
+                int epincrease = Convert.ToInt32(levelbox.Text) * (1000 * Convert.ToInt32(levelbox.Text));
+                randomep = randomep + epincrease;
+                int ep = Convert.ToInt32(xpbox.Text) + randomep;
                 xpbox.Text = ep.ToString();
                 leveltimer.Start();
                 int random;
@@ -424,10 +418,11 @@ namespace DDD
             lb = lb + 1;
             levelbox.Text = lb.ToString();
             levelxp = levelxp + levelxp;
-            levelxp = levelxp + Randomness.getNextInt(2000, 6000);
+            levelxp = levelxp + Randomness.getNextInt(2000, 5000);
             nextlevelxp.Text = levelxp.ToString();
             skillvariable = skillvariable + 1;
             skillpointsbox.Text = skillvariable.ToString();
+            health.Value = 100;
             leveltimer.Start();
         }
 
@@ -486,10 +481,58 @@ namespace DDD
 
         }
 
- 
+        private void dungeontimer_Tick(object sender, EventArgs e)
+        {
+            if (dungeonprogress.Value == 100)
+            {
+                if (Convert.ToInt32(dungeonlevelbox.Text) < 10)
+                {
+                    int dlb = Convert.ToInt32(dungeonlevelbox.Text) + 1;
+                    dungeonlevelbox.Text = dlb.ToString();
+                    dungeonprogress.Value = 0;
+                }
 
 
+            }
+        }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            health.Value = 0;
+        }
+
+
+        private void debugtimer_Tick(object sender, EventArgs e)
+        {
+        }
+
+        private void shealing_Click(object sender, EventArgs e)
+        {
+            healpotion(25);
+        }
+
+
+        private void healpotion(int value)
+        {
+            if (health.Value + value <= 100)
+            {
+                health.Value = health.Value + value;
+
+            }
+
+
+        }
+
+        private void mhealing_Click(object sender, EventArgs e)
+        {
+            healpotion(50);
+        }
+
+        private void bhealing_Click(object sender, EventArgs e)
+        {
+            
+            healpotion(100 - health.Value);
+        }
     }
             
         
