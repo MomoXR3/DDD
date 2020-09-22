@@ -256,41 +256,30 @@ namespace DDD
 
         private void Schlagsound1()
         {
-            System.Media.SoundPlayer player =
-            new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Schlag 1.wav";
-            player.Load();
-            player.Play();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Schlag_1);
+            audio.Play();
 
         }
 
         private void Schlagsound2()
         {
-            System.Media.SoundPlayer player =
-            new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Schlag 2.wav";
-            player.Load();
-            player.Play();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Schlag_2);
+            audio.Play();
 
         }
 
         private void Opensound()
         {
-            System.Media.SoundPlayer player =
-            new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Open.wav";
-            player.Play();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Open);
+            audio.Play();
 
         }
 
 
         private void Closesound()
         {
-            System.Media.SoundPlayer player =
-            new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Close.wav";
-            player.Load();
-            player.Play();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Close);
+            audio.Play();
 
         }
 
@@ -301,22 +290,16 @@ namespace DDD
 
         private void Respawnsound()
         {
-            System.Media.SoundPlayer player =
-            new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Respawn.wav";
-            player.Load();
-            player.Play();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Respawn);
+            audio.Play();
 
         }
 
 
         private void Deadsound()
         {
-            System.Media.SoundPlayer player =
-            new System.Media.SoundPlayer();
-            player.SoundLocation = @"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Dead.wav";
-            player.Load();
-            player.Play();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Dead);
+            audio.Play();
 
         }
 
@@ -329,7 +312,7 @@ namespace DDD
                     music.Stop();
                     if (waveOut == null)
                     {
-                        WaveFileReader reader = new WaveFileReader(@"D:\Programmieren\Microsoft Visual Studio\DDD\DDD\Resources\Dunka Dunka.wav");
+                        WaveFileReader reader = new WaveFileReader(DDD.Properties.Resources.Dunka_Dunka);
                         LoopStream loop = new LoopStream(reader);
                         waveOut = new WaveOut();
                         waveOut.Init(loop);
