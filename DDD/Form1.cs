@@ -17,22 +17,29 @@ using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
 using RandomNumber;
 using System.Security.Permissions;
+using System.Runtime.CompilerServices;
 
 namespace DDD
 {
-    
 
     public partial class Form1 : Form
     {
         public sbyte runde = 0;
-        private WaveOutEvent outputDevice;
-        private AudioFileReader audioFile;
+
 
 
         public Form1()
         {
             InitializeComponent();
         }
+
+        public byte healthps = 5;
+        public byte healthpm = 2;
+        public byte healthpb = 1;
+        public byte healthpsE;
+        public byte healthpmE;
+        public byte healthpbE;
+
 
 
         private int LPF = 0;
@@ -201,7 +208,8 @@ namespace DDD
         private void deathtimer_Tick(object sender, EventArgs e)
         {
             if (health.Value < 1)
-            { Deadsound();
+            {
+                Deadsound();
                 attacktimer.Stop();
                 dungeonlevel.Visible = false;
                 dungeonlevelbox.Visible = false;
@@ -224,7 +232,8 @@ namespace DDD
         }
 
         private void restart_Click(object sender, EventArgs e)
-        { Respawnsound();
+        {
+            Respawnsound();
             health.Value = 100;
             healthE.Value = 100;
             levelxp = 20000;
@@ -237,6 +246,9 @@ namespace DDD
             nextlevelxp.Text = levelxp.ToString();
             dungeonprogress.Value = 0;
             attacktimer.Start();
+            healthpm = 2;
+            healthpb = 1;
+            healthps = 5;
             die.Visible = false;
             restart.Visible = false;
             dungeonlevel.Visible = true;
@@ -309,22 +321,22 @@ namespace DDD
         private void Music()
         {
 
-                    music.Stop();
-                    if (waveOut == null)
-                    {
-                        WaveFileReader reader = new WaveFileReader(DDD.Properties.Resources.Dunka_Dunka);
-                        LoopStream loop = new LoopStream(reader);
-                        waveOut = new WaveOut();
-                        waveOut.Init(loop);
-                        waveOut.Play();
-                    
-                    }
-                    else
-                    {
-                        waveOut.Stop();
-                        waveOut.Dispose();
-                        waveOut = null;
-                    }
+            music.Stop();
+            if (waveOut == null)
+            {
+                WaveFileReader reader = new WaveFileReader(DDD.Properties.Resources.Dunka_Dunka);
+                LoopStream loop = new LoopStream(reader);
+                waveOut = new WaveOut();
+                waveOut.Init(loop);
+                waveOut.Play();
+
+            }
+            else
+            {
+                waveOut.Stop();
+                waveOut.Dispose();
+                waveOut = null;
+            }
         }
 
 
@@ -360,7 +372,7 @@ namespace DDD
                 random = Randomness.getNextInt(1, 50);
                 int dp = dungeonprogress.Value;
                 dp = dungeonprogress.Value + random;
-                if(dp > 100)
+                if (dp > 100)
                 {
                     dp = 100;
                 }
@@ -375,10 +387,10 @@ namespace DDD
         }
 
         int levelxp = 20000;
-        
+
         private void leveltimer_Tick(object sender, EventArgs e)
         {
-            
+
             if (Convert.ToInt32(xpbox.Text) >= levelxp)
             {
                 nextlevel();
@@ -387,16 +399,13 @@ namespace DDD
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            healthE.Value = 0;
-        }
+
 
 
         private void nextlevel()
         {
             int skillvariable = Convert.ToInt32(skillpointsbox.Text);
-           
+
             int lb = Convert.ToInt32(levelbox.Text);
             lb = lb + 1;
             levelbox.Text = lb.ToString();
@@ -474,6 +483,12 @@ namespace DDD
                     dungeonlevelbox.Text = dlb.ToString();
                     dungeonprogress.Value = 0;
                 }
+                else
+                {
+                    newdungeon();
+                    attacktimer.Stop();
+                    dungeontimer.Stop();
+                }
 
 
             }
@@ -497,12 +512,16 @@ namespace DDD
 
         private void healpotion(int value)
         {
-            if (health.Value + value <= 100)
+            int h;
+            h = health.Value + value;
+            if (h > 100)
             {
-                health.Value = health.Value + value;
-
+                health.Value = 100;
             }
-
+            else
+            {
+                health.Value = h;
+            }
 
         }
 
@@ -513,19 +532,68 @@ namespace DDD
 
         private void bhealing_Click(object sender, EventArgs e)
         {
-            
+
             healpotion(100 - health.Value);
         }
+
+        private void newdungeon()
+        {
+            foreach (Control c in Controls)
+            {
+                Button b = c as Button;
+                if (b != null)
+                {
+                    b.Enabled = false;
+                }
+                
+
+            }
+                restart.Visible = false;
+                shop.Enabled = true;
+                shop.Visible = true;
+                neu.Enabled = true;
+                neu.Visible = true;
+        }
+
+        private void neu_Click(object sender, EventArgs e)
+        {
+            dungeonlevelbox.Text = 0.ToString();
+            dungeonprogress.Value = 0;
+            health.Value = 100;
+            special.Value = 100;
+            int xp = Convert.ToInt32(xpbox.Text);
+            xp += 100000 * Convert.ToInt32(levelbox.Text);
+            xpbox.Text = xp.ToString();
+            attacktimer.Start();
+            dungeontimer.Start();
+            foreach (Control c in Controls)
+            {
+                Button b = c as Button;
+                if (b != null)
+                {
+                    b.Enabled = true;
+                }
+
+
+            }
+            shop.Enabled = false;
+            shop.Visible = false;
+            neu.Enabled = false;
+            neu.Visible = false;
+        }
+
+        private void shop_Click(object sender, EventArgs e)
+        {
+            Shop frm = new Shop();
+            frm.Show();
+        }
+
+        private void dungeonfinish_Click(object sender, EventArgs e)
+        {
+            dungeonlevelbox.Text = 10.ToString();
+            dungeonprogress.Value = 100;
+        }
     }
-            
-        
-        
-
-
-
-
-
-
 }
 
 

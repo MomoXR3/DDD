@@ -90,6 +90,16 @@ namespace DDD.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap CnQUhPw {
+            get {
+                object obj = ResourceManager.GetObject("CnQUhPw", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
         public static System.IO.UnmanagedMemoryStream Dead {
@@ -150,6 +160,33 @@ namespace DDD.Properties {
         public static System.IO.UnmanagedMemoryStream Schlag_2 {
             get {
                 return ResourceManager.GetStream("Schlag_2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Shopkeeper1 {
+            get {
+                return ResourceManager.GetStream("Shopkeeper1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Shopkeeper2 {
+            get {
+                return ResourceManager.GetStream("Shopkeeper2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Shopkeeper3 {
+            get {
+                return ResourceManager.GetStream("Shopkeeper3", resourceCulture);
             }
         }
         

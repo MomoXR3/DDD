@@ -90,34 +90,36 @@
             this.inventorytimer = new System.Windows.Forms.Timer(this.components);
             this.musicbox = new System.Windows.Forms.CheckBox();
             this.music = new System.Windows.Forms.Timer(this.components);
-            this.enemyturn = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.yourturn = new System.Windows.Forms.PictureBox();
             this.deathtimer = new System.Windows.Forms.Timer(this.components);
             this.die = new System.Windows.Forms.Label();
             this.restart = new System.Windows.Forms.Button();
             this.enemytimer1 = new System.Windows.Forms.Timer(this.components);
             this.deathtimerE = new System.Windows.Forms.Timer(this.components);
             this.leveltimer = new System.Windows.Forms.Timer(this.components);
-            this.killenemy = new System.Windows.Forms.Button();
+            this.dungeonfinish = new System.Windows.Forms.Button();
             this.skillpointstimer = new System.Windows.Forms.Timer(this.components);
             this.dungeontimer = new System.Windows.Forms.Timer(this.components);
             this.debugbox = new System.Windows.Forms.GroupBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.debugtimer = new System.Windows.Forms.Timer(this.components);
             this.healthE = new System.Windows.Forms.ProgressBar();
             this.health = new System.Windows.Forms.ProgressBar();
             this.dungeonlevel = new System.Windows.Forms.Label();
             this.dungeonlevelbox = new System.Windows.Forms.Label();
+            this.dungeonleveltimer = new System.Windows.Forms.Timer(this.components);
+            this.yourturn = new System.Windows.Forms.PictureBox();
+            this.enemyturn = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
             this.inventarbox.SuspendLayout();
             this.potions.SuspendLayout();
+            this.debugbox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.yourturn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemyturn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.yourturn)).BeginInit();
-            this.debugbox.SuspendLayout();
             this.SuspendLayout();
             // 
             // progressBar3
@@ -586,6 +588,7 @@
             this.neu.Text = "New Dungeon";
             this.neu.UseVisualStyleBackColor = true;
             this.neu.Visible = false;
+            this.neu.Click += new System.EventHandler(this.neu_Click);
             // 
             // shop
             // 
@@ -596,6 +599,7 @@
             this.shop.Text = "Shop";
             this.shop.UseVisualStyleBackColor = true;
             this.shop.Visible = false;
+            this.shop.Click += new System.EventHandler(this.shop_Click);
             // 
             // inventarbox
             // 
@@ -738,52 +742,6 @@
             this.music.Enabled = true;
             this.music.Tick += new System.EventHandler(this.music_Tick);
             // 
-            // enemyturn
-            // 
-            this.enemyturn.BackColor = System.Drawing.Color.DarkGray;
-            this.enemyturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.enemyturn.Image = global::DDD.Properties.Resources._8594_Pfeil_rechts;
-            this.enemyturn.Location = new System.Drawing.Point(921, 224);
-            this.enemyturn.Name = "enemyturn";
-            this.enemyturn.Size = new System.Drawing.Size(153, 93);
-            this.enemyturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.enemyturn.TabIndex = 16;
-            this.enemyturn.TabStop = false;
-            this.enemyturn.Visible = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DDD.Properties.Resources.source;
-            this.pictureBox2.Location = new System.Drawing.Point(1093, 146);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(296, 249);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 12;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DDD.Properties.Resources.source;
-            this.pictureBox1.Location = new System.Drawing.Point(58, 146);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(296, 249);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 12;
-            this.pictureBox1.TabStop = false;
-            // 
-            // yourturn
-            // 
-            this.yourturn.BackColor = System.Drawing.Color.DarkGray;
-            this.yourturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.yourturn.Image = global::DDD.Properties.Resources._8592_Pfeil_links;
-            this.yourturn.Location = new System.Drawing.Point(376, 224);
-            this.yourturn.Name = "yourturn";
-            this.yourturn.Size = new System.Drawing.Size(153, 93);
-            this.yourturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.yourturn.TabIndex = 16;
-            this.yourturn.TabStop = false;
-            this.yourturn.Visible = false;
-            // 
             // deathtimer
             // 
             this.deathtimer.Enabled = true;
@@ -792,7 +750,7 @@
             // die
             // 
             this.die.Font = new System.Drawing.Font("Overseer", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.die.Location = new System.Drawing.Point(376, 9);
+            this.die.Location = new System.Drawing.Point(371, -5);
             this.die.Name = "die";
             this.die.Size = new System.Drawing.Size(698, 136);
             this.die.TabIndex = 17;
@@ -827,15 +785,15 @@
             this.leveltimer.Enabled = true;
             this.leveltimer.Tick += new System.EventHandler(this.leveltimer_Tick);
             // 
-            // killenemy
+            // dungeonfinish
             // 
-            this.killenemy.Location = new System.Drawing.Point(30, 67);
-            this.killenemy.Name = "killenemy";
-            this.killenemy.Size = new System.Drawing.Size(75, 23);
-            this.killenemy.TabIndex = 19;
-            this.killenemy.Text = "killenemy";
-            this.killenemy.UseVisualStyleBackColor = true;
-            this.killenemy.Click += new System.EventHandler(this.button1_Click);
+            this.dungeonfinish.Location = new System.Drawing.Point(30, 90);
+            this.dungeonfinish.Name = "dungeonfinish";
+            this.dungeonfinish.Size = new System.Drawing.Size(75, 23);
+            this.dungeonfinish.TabIndex = 19;
+            this.dungeonfinish.Text = "dungeonfinish";
+            this.dungeonfinish.UseVisualStyleBackColor = true;
+            this.dungeonfinish.Click += new System.EventHandler(this.dungeonfinish_Click);
             // 
             // skillpointstimer
             // 
@@ -851,13 +809,23 @@
             // debugbox
             // 
             this.debugbox.Controls.Add(this.killme);
-            this.debugbox.Controls.Add(this.killenemy);
+            this.debugbox.Controls.Add(this.button2);
+            this.debugbox.Controls.Add(this.dungeonfinish);
             this.debugbox.Location = new System.Drawing.Point(1086, 456);
             this.debugbox.Name = "debugbox";
             this.debugbox.Size = new System.Drawing.Size(289, 121);
             this.debugbox.TabIndex = 20;
             this.debugbox.TabStop = false;
             this.debugbox.Text = "Debug";
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(30, 61);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 19;
+            this.button2.Text = "killenemy";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // debugtimer
             // 
@@ -900,6 +868,52 @@
             this.dungeonlevelbox.TabIndex = 21;
             this.dungeonlevelbox.Text = "0";
             // 
+            // yourturn
+            // 
+            this.yourturn.BackColor = System.Drawing.Color.DarkGray;
+            this.yourturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.yourturn.Image = global::DDD.Properties.Resources._8592_Pfeil_links;
+            this.yourturn.Location = new System.Drawing.Point(376, 224);
+            this.yourturn.Name = "yourturn";
+            this.yourturn.Size = new System.Drawing.Size(153, 93);
+            this.yourturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.yourturn.TabIndex = 16;
+            this.yourturn.TabStop = false;
+            this.yourturn.Visible = false;
+            // 
+            // enemyturn
+            // 
+            this.enemyturn.BackColor = System.Drawing.Color.DarkGray;
+            this.enemyturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.enemyturn.Image = global::DDD.Properties.Resources._8594_Pfeil_rechts;
+            this.enemyturn.Location = new System.Drawing.Point(921, 224);
+            this.enemyturn.Name = "enemyturn";
+            this.enemyturn.Size = new System.Drawing.Size(153, 93);
+            this.enemyturn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.enemyturn.TabIndex = 16;
+            this.enemyturn.TabStop = false;
+            this.enemyturn.Visible = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DDD.Properties.Resources.source;
+            this.pictureBox2.Location = new System.Drawing.Point(1093, 146);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(296, 249);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 12;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DDD.Properties.Resources.source;
+            this.pictureBox1.Location = new System.Drawing.Point(58, 146);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(296, 249);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 12;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -908,7 +922,6 @@
             this.Controls.Add(this.dungeonlevelbox);
             this.Controls.Add(this.dungeonlevel);
             this.Controls.Add(this.debugbox);
-            this.Controls.Add(this.restart);
             this.Controls.Add(this.die);
             this.Controls.Add(this.yourturn);
             this.Controls.Add(this.enemyturn);
@@ -932,6 +945,7 @@
             this.Controls.Add(this.specialE);
             this.Controls.Add(this.healthE);
             this.Controls.Add(this.health);
+            this.Controls.Add(this.restart);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "Form1";
@@ -944,11 +958,11 @@
             this.inventarbox.ResumeLayout(false);
             this.potions.ResumeLayout(false);
             this.potions.PerformLayout();
+            this.debugbox.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.yourturn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemyturn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.yourturn)).EndInit();
-            this.debugbox.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1012,7 +1026,7 @@
         private System.Windows.Forms.Label xpbox;
         private System.Windows.Forms.Label levelbox;
         private System.Windows.Forms.Timer leveltimer;
-        private System.Windows.Forms.Button killenemy;
+        private System.Windows.Forms.Button dungeonfinish;
         private System.Windows.Forms.Label nextlevelxp;
         private System.Windows.Forms.Label skillpointsbox;
         private System.Windows.Forms.Label skillpoints;
@@ -1035,6 +1049,8 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Timer dungeonleveltimer;
+        private System.Windows.Forms.Button button2;
     }
 }
 
