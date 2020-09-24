@@ -76,6 +76,8 @@
             this.neu = new System.Windows.Forms.Button();
             this.shop = new System.Windows.Forms.Button();
             this.inventarbox = new System.Windows.Forms.GroupBox();
+            this.goldlabel = new System.Windows.Forms.Label();
+            this.goldbox = new System.Windows.Forms.Label();
             this.potions = new System.Windows.Forms.GroupBox();
             this.manalabel = new System.Windows.Forms.Label();
             this.heallabel = new System.Windows.Forms.Label();
@@ -102,15 +104,14 @@
             this.debugbox = new System.Windows.Forms.GroupBox();
             this.button2 = new System.Windows.Forms.Button();
             this.debugtimer = new System.Windows.Forms.Timer(this.components);
-            this.healthE = new System.Windows.Forms.ProgressBar();
-            this.health = new System.Windows.Forms.ProgressBar();
             this.dungeonlevel = new System.Windows.Forms.Label();
             this.dungeonlevelbox = new System.Windows.Forms.Label();
-            this.dungeonleveltimer = new System.Windows.Forms.Timer(this.components);
             this.yourturn = new System.Windows.Forms.PictureBox();
             this.enemyturn = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.healthE = new System.Windows.Forms.ProgressBar();
+            this.health = new System.Windows.Forms.ProgressBar();
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
             this.inventarbox.SuspendLayout();
@@ -603,6 +604,8 @@
             // 
             // inventarbox
             // 
+            this.inventarbox.Controls.Add(this.goldlabel);
+            this.inventarbox.Controls.Add(this.goldbox);
             this.inventarbox.Controls.Add(this.potions);
             this.inventarbox.Location = new System.Drawing.Point(376, 390);
             this.inventarbox.Name = "inventarbox";
@@ -611,6 +614,24 @@
             this.inventarbox.TabStop = false;
             this.inventarbox.Text = "Inventory";
             this.inventarbox.Visible = false;
+            // 
+            // goldlabel
+            // 
+            this.goldlabel.Font = new System.Drawing.Font("Overseer", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goldlabel.Location = new System.Drawing.Point(19, 26);
+            this.goldlabel.Name = "goldlabel";
+            this.goldlabel.Size = new System.Drawing.Size(56, 34);
+            this.goldlabel.TabIndex = 22;
+            this.goldlabel.Text = "Gold";
+            // 
+            // goldbox
+            // 
+            this.goldbox.Font = new System.Drawing.Font("Overseer", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goldbox.Location = new System.Drawing.Point(69, 26);
+            this.goldbox.Name = "goldbox";
+            this.goldbox.Size = new System.Drawing.Size(147, 34);
+            this.goldbox.TabIndex = 22;
+            this.goldbox.Text = "0";
             // 
             // potions
             // 
@@ -826,29 +847,12 @@
             this.button2.TabIndex = 19;
             this.button2.Text = "killenemy";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // debugtimer
             // 
             this.debugtimer.Enabled = true;
             this.debugtimer.Tick += new System.EventHandler(this.debugtimer_Tick);
-            // 
-            // healthE
-            // 
-            this.healthE.BackColor = System.Drawing.SystemColors.ControlText;
-            this.healthE.Cursor = System.Windows.Forms.Cursors.No;
-            this.healthE.Location = new System.Drawing.Point(1093, 63);
-            this.healthE.Name = "healthE";
-            this.healthE.Size = new System.Drawing.Size(296, 23);
-            this.healthE.TabIndex = 2;
-            this.healthE.Value = global::DDD.Properties.Settings.Default.HPE;
-            // 
-            // health
-            // 
-            this.health.Location = new System.Drawing.Point(58, 63);
-            this.health.Name = "health";
-            this.health.Size = new System.Drawing.Size(296, 23);
-            this.health.TabIndex = 1;
-            this.health.Value = global::DDD.Properties.Settings.Default.HP;
             // 
             // dungeonlevel
             // 
@@ -913,6 +917,24 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 12;
             this.pictureBox1.TabStop = false;
+            // 
+            // healthE
+            // 
+            this.healthE.BackColor = System.Drawing.SystemColors.ControlText;
+            this.healthE.Cursor = System.Windows.Forms.Cursors.No;
+            this.healthE.Location = new System.Drawing.Point(1093, 63);
+            this.healthE.Name = "healthE";
+            this.healthE.Size = new System.Drawing.Size(296, 23);
+            this.healthE.TabIndex = 2;
+            this.healthE.Value = 100;
+            // 
+            // health
+            // 
+            this.health.Location = new System.Drawing.Point(58, 63);
+            this.health.Name = "health";
+            this.health.Size = new System.Drawing.Size(296, 23);
+            this.health.TabIndex = 1;
+            this.health.Value = 100;
             // 
             // Form1
             // 
@@ -1049,8 +1071,9 @@
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Timer dungeonleveltimer;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label goldbox;
+        private System.Windows.Forms.Label goldlabel;
     }
 }
 

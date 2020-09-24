@@ -163,4 +163,22 @@
   <data name="Shopkeeper3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Shopkeeper3.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="Gold" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Gold.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Levelup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Levelup.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="NewDungeon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\NewDungeon.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Overseer" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Overseer.otf;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Potion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Potion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="Skill" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Skill.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

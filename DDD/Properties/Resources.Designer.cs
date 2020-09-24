@@ -130,9 +130,55 @@ namespace DDD.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
+        public static System.IO.UnmanagedMemoryStream Gold {
+            get {
+                return ResourceManager.GetStream("Gold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Levelup {
+            get {
+                return ResourceManager.GetStream("Levelup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream NewDungeon {
+            get {
+                return ResourceManager.GetStream("NewDungeon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
         public static System.IO.UnmanagedMemoryStream Open {
             get {
                 return ResourceManager.GetStream("Open", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
+        /// </summary>
+        public static byte[] Overseer {
+            get {
+                object obj = ResourceManager.GetObject("Overseer", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Potion {
+            get {
+                return ResourceManager.GetStream("Potion", resourceCulture);
             }
         }
         
@@ -187,6 +233,15 @@ namespace DDD.Properties {
         public static System.IO.UnmanagedMemoryStream Shopkeeper3 {
             get {
                 return ResourceManager.GetStream("Shopkeeper3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
+        public static System.IO.UnmanagedMemoryStream Skill {
+            get {
+                return ResourceManager.GetStream("Skill", resourceCulture);
             }
         }
         

@@ -70,5 +70,53 @@ namespace DDD.Properties {
                 this["runde"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public string Gold {
+            get {
+                return ((string)(this["Gold"]));
+            }
+            set {
+                this["Gold"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("5")]
+        public int hps {
+            get {
+                return ((int)(this["hps"]));
+            }
+            set {
+                this["hps"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public int hpm {
+            get {
+                return ((int)(this["hpm"]));
+            }
+            set {
+                this["hpm"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int hpb {
+            get {
+                return ((int)(this["hpb"]));
+            }
+            set {
+                this["hpb"] = value;
+            }
+        }
     }
 }

@@ -26,19 +26,37 @@ namespace DDD
     {
         public sbyte runde = 0;
 
+        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
+        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
+           IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
+
+        private PrivateFontCollection fonts = new PrivateFontCollection();
+
+        Font Fallout;
+
+
 
 
         public Form1()
         {
             InitializeComponent();
+            DDD.Properties.Settings.Default.hps = 5;
+            DDD.Properties.Settings.Default.hpm = 2;
+            DDD.Properties.Settings.Default.hpb = 1;
+
+
+            byte[] fontData = Properties.Resources.Overseer;
+            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
+            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
+            uint dummy = 0;
+            fonts.AddMemoryFont(fontPtr, Properties.Resources.Overseer.Length);
+            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.Overseer.Length, IntPtr.Zero, ref dummy);
+            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
+
+            Fallout = new Font(fonts.Families[0], 16.0F);
+
         }
 
-        public byte healthps = 5;
-        public byte healthpm = 2;
-        public byte healthpb = 1;
-        public byte healthpsE;
-        public byte healthpmE;
-        public byte healthpbE;
 
 
 
@@ -246,9 +264,10 @@ namespace DDD
             nextlevelxp.Text = levelxp.ToString();
             dungeonprogress.Value = 0;
             attacktimer.Start();
-            healthpm = 2;
-            healthpb = 1;
-            healthps = 5;
+            DDD.Properties.Settings.Default.Gold = 0.ToString();
+            DDD.Properties.Settings.Default.hps = 5;
+            DDD.Properties.Settings.Default.hpm = 2;
+            DDD.Properties.Settings.Default.hpb = 1;
             die.Visible = false;
             restart.Visible = false;
             dungeonlevel.Visible = true;
@@ -353,20 +372,28 @@ namespace DDD
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            {
+                die.Font = Fallout;
+                dungeonlevel.Font = Fallout;
+                goldlabel.Font = Fallout;
+                goldbox.Font = Fallout;
+            }
         }
 
         private void deathtimerE_Tick(object sender, EventArgs e)
-        {
+        { 
             if (healthE.Value < 1)
             {
                 enemytimer1.Stop();
+              
                 runde = 0;
                 int randomep = Randomness.getNextInt(1000, 10000);
                 int epincrease = Convert.ToInt32(levelbox.Text) * (1000 * Convert.ToInt32(levelbox.Text));
                 randomep = randomep + epincrease;
                 int ep = Convert.ToInt32(xpbox.Text) + randomep;
                 xpbox.Text = ep.ToString();
+                int gp = Convert.ToInt32(goldbox.Text) + Randomness.getNextInt(100, 5000);
+                goldbox.Text = gp.ToString();
                 leveltimer.Start();
                 int random;
                 random = Randomness.getNextInt(1, 50);
@@ -416,6 +443,8 @@ namespace DDD
             skillpointsbox.Text = skillvariable.ToString();
             health.Value = 100;
             leveltimer.Start();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Levelup);
+            audio.Play();
         }
 
         private void skillpointstimer_Tick(object sender, EventArgs e)
@@ -449,6 +478,8 @@ namespace DDD
             spb = spb - 1;
             attackbox.Text = ab.ToString();
             skillpointsbox.Text = spb.ToString();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Skill);
+            audio.Play();
         }
 
         private void magicplus_Click(object sender, EventArgs e)
@@ -459,6 +490,8 @@ namespace DDD
             spb = spb - 1;
             magicbox.Text = ab.ToString();
             skillpointsbox.Text = spb.ToString();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Skill);
+            audio.Play();
 
         }
 
@@ -470,6 +503,8 @@ namespace DDD
             spb = spb - 1;
             defencebox.Text = ab.ToString();
             skillpointsbox.Text = spb.ToString();
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Skill);
+            audio.Play();
 
         }
 
@@ -506,12 +541,18 @@ namespace DDD
 
         private void shealing_Click(object sender, EventArgs e)
         {
-            healpotion(25);
+            if (DDD.Properties.Settings.Default.hps > 0)
+            {
+                healpotion(25);
+                DDD.Properties.Settings.Default.hps--;
+            }
         }
 
 
         private void healpotion(int value)
         {
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Potion);
+            audio.Play();
             int h;
             h = health.Value + value;
             if (h > 100)
@@ -527,13 +568,21 @@ namespace DDD
 
         private void mhealing_Click(object sender, EventArgs e)
         {
-            healpotion(50);
+            if(DDD.Properties.Settings.Default.hpm >0)
+            {
+                healpotion(50);
+                DDD.Properties.Settings.Default.hpm--;
+            }
         }
 
         private void bhealing_Click(object sender, EventArgs e)
         {
 
-            healpotion(100 - health.Value);
+            if (DDD.Properties.Settings.Default.hpb > 0)
+            {
+                healpotion(100);
+                DDD.Properties.Settings.Default.hpb--;
+            }
         }
 
         private void newdungeon()
@@ -566,6 +615,7 @@ namespace DDD
             xpbox.Text = xp.ToString();
             attacktimer.Start();
             dungeontimer.Start();
+            goldbox.Text = DDD.Properties.Settings.Default.Gold;
             foreach (Control c in Controls)
             {
                 Button b = c as Button;
@@ -580,10 +630,13 @@ namespace DDD
             shop.Visible = false;
             neu.Enabled = false;
             neu.Visible = false;
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.NewDungeon);
+            audio.Play();
         }
 
         private void shop_Click(object sender, EventArgs e)
         {
+            DDD.Properties.Settings.Default.Gold = goldbox.Text;
             Shop frm = new Shop();
             frm.Show();
         }
@@ -593,6 +646,14 @@ namespace DDD
             dungeonlevelbox.Text = 10.ToString();
             dungeonprogress.Value = 100;
         }
+
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            healthE.Value = 0;
+        }
+
+
     }
 }
 
