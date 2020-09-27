@@ -100,6 +100,16 @@ namespace DDD.Properties {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.Drawing.Bitmap.
+        /// </summary>
+        public static System.Drawing.Bitmap DDDIcon {
+            get {
+                object obj = ResourceManager.GetObject("DDDIcon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
         public static System.IO.UnmanagedMemoryStream Dead {
@@ -130,6 +140,15 @@ namespace DDD.Properties {
         /// <summary>
         ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
         /// </summary>
+        public static System.IO.UnmanagedMemoryStream Finish {
+            get {
+                return ResourceManager.GetStream("Finish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Ressource vom Typ System.IO.UnmanagedMemoryStream ähnlich wie System.IO.MemoryStream.
+        /// </summary>
         public static System.IO.UnmanagedMemoryStream Gold {
             get {
                 return ResourceManager.GetStream("Gold", resourceCulture);
@@ -142,6 +161,15 @@ namespace DDD.Properties {
         public static System.IO.UnmanagedMemoryStream Levelup {
             get {
                 return ResourceManager.GetStream("Levelup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die  ähnelt.
+        /// </summary>
+        public static string musicsave {
+            get {
+                return ResourceManager.GetString("musicsave", resourceCulture);
             }
         }
         
@@ -160,16 +188,6 @@ namespace DDD.Properties {
         public static System.IO.UnmanagedMemoryStream Open {
             get {
                 return ResourceManager.GetStream("Open", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Ressource vom Typ System.Byte[].
-        /// </summary>
-        public static byte[] Overseer {
-            get {
-                object obj = ResourceManager.GetObject("Overseer", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

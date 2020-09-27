@@ -19,10 +19,7 @@ namespace DDD
         public Shop()
         {
             InitializeComponent();
-            goldbox.Text = DDD.Properties.Settings.Default.Gold;
-            hpbcounter.Text = DDD.Properties.Settings.Default.hpb.ToString();
-            hpmcounter.Text = DDD.Properties.Settings.Default.hpm.ToString();
-            hpscounter.Text = DDD.Properties.Settings.Default.hps.ToString();
+
             
         }
 
@@ -108,11 +105,33 @@ namespace DDD
             }
         }
 
+        private void Shop_Load(object sender, EventArgs e)
+        {
 
+        }
 
+        private void close_Click(object sender, EventArgs e)
+        {
+            Hide();
+            shopkeepersound.Stop();
+            Properties.Settings.Default.shopvisible = false;
+        }
 
+        private void Shop_Shown(object sender, EventArgs e)
+        {
+            
+        }
 
-
-
+        private void synctimer_Tick(object sender, EventArgs e)
+        {
+            if (Properties.Settings.Default.shopvisible == true)
+            {
+                goldbox.Text = DDD.Properties.Settings.Default.Gold;
+                hpbcounter.Text = DDD.Properties.Settings.Default.hpb.ToString();
+                hpmcounter.Text = DDD.Properties.Settings.Default.hpm.ToString();
+                hpscounter.Text = DDD.Properties.Settings.Default.hps.ToString();
+                shopkeepersound.Start();
+            }
+        }
     }
 }

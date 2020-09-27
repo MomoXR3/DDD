@@ -18,6 +18,7 @@ using NAudio.Wave.SampleProviders;
 using RandomNumber;
 using System.Security.Permissions;
 using System.Runtime.CompilerServices;
+using System.IO;
 
 namespace DDD
 {
@@ -26,16 +27,10 @@ namespace DDD
     {
         public sbyte runde = 0;
 
-        [System.Runtime.InteropServices.DllImport("gdi32.dll")]
-        private static extern IntPtr AddFontMemResourceEx(IntPtr pbFont, uint cbFont,
-           IntPtr pdv, [System.Runtime.InteropServices.In] ref uint pcFonts);
 
-        private PrivateFontCollection fonts = new PrivateFontCollection();
+        Splashscreen splash = new Splashscreen();
 
-        Font Fallout;
-
-
-
+        
 
         public Form1()
         {
@@ -43,17 +38,14 @@ namespace DDD
             DDD.Properties.Settings.Default.hps = 5;
             DDD.Properties.Settings.Default.hpm = 2;
             DDD.Properties.Settings.Default.hpb = 1;
+            splash.Show();
+            toolTip1.SetToolTip(musicbox, "Klicken um Musik ein- und auszuschalten");
+            musicbox.Checked = Speicher.Einstellungen.Default.Musik;
 
 
-            byte[] fontData = Properties.Resources.Overseer;
-            IntPtr fontPtr = System.Runtime.InteropServices.Marshal.AllocCoTaskMem(fontData.Length);
-            System.Runtime.InteropServices.Marshal.Copy(fontData, 0, fontPtr, fontData.Length);
-            uint dummy = 0;
-            fonts.AddMemoryFont(fontPtr, Properties.Resources.Overseer.Length);
-            AddFontMemResourceEx(fontPtr, (uint)Properties.Resources.Overseer.Length, IntPtr.Zero, ref dummy);
-            System.Runtime.InteropServices.Marshal.FreeCoTaskMem(fontPtr);
 
-            Fallout = new Font(fonts.Families[0], 16.0F);
+            //musicactive = Convert.ToInt32(DDD.Properties.Resources.musicsave);
+
 
         }
 
@@ -164,18 +156,26 @@ namespace DDD
 
 
         }
-
+        Boolean ma = false;
         private void music_Tick(object sender, EventArgs e)
         {
+
+
+           
             if (musicbox.Checked == true)
             {
                 waveOut = null;
                 Music();
+                music.Stop();
+
             }
 
             else
             {
+                if(ma == true)
+                {
                 waveOut.Stop();
+                }
 
             }
         }
@@ -243,6 +243,7 @@ namespace DDD
                     }
                     restart.Enabled = true;
                     deathtimer.Stop();
+                    close.Enabled = true;
 
                 }
 
@@ -339,7 +340,7 @@ namespace DDD
         private WaveOut waveOut;
         private void Music()
         {
-
+            ma = true;
             music.Stop();
             if (waveOut == null)
             {
@@ -373,19 +374,16 @@ namespace DDD
         private void Form1_Load(object sender, EventArgs e)
         {
             {
-                die.Font = Fallout;
-                dungeonlevel.Font = Fallout;
-                goldlabel.Font = Fallout;
-                goldbox.Font = Fallout;
+
             }
         }
 
         private void deathtimerE_Tick(object sender, EventArgs e)
-        { 
+        {
             if (healthE.Value < 1)
             {
                 enemytimer1.Stop();
-              
+
                 runde = 0;
                 int randomep = Randomness.getNextInt(1000, 10000);
                 int epincrease = Convert.ToInt32(levelbox.Text) * (1000 * Convert.ToInt32(levelbox.Text));
@@ -568,7 +566,7 @@ namespace DDD
 
         private void mhealing_Click(object sender, EventArgs e)
         {
-            if(DDD.Properties.Settings.Default.hpm >0)
+            if (DDD.Properties.Settings.Default.hpm > 0)
             {
                 healpotion(50);
                 DDD.Properties.Settings.Default.hpm--;
@@ -587,6 +585,8 @@ namespace DDD
 
         private void newdungeon()
         {
+            SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.Finish);
+            audio.Play();
             foreach (Control c in Controls)
             {
                 Button b = c as Button;
@@ -594,20 +594,22 @@ namespace DDD
                 {
                     b.Enabled = false;
                 }
-                
+
 
             }
-                restart.Visible = false;
-                shop.Enabled = true;
-                shop.Visible = true;
-                neu.Enabled = true;
-                neu.Visible = true;
+            restart.Visible = false;
+            shop.Enabled = true;
+            shop.Visible = true;
+            neu.Enabled = true;
+            neu.Visible = true;
+            close.Enabled = true;
         }
 
         private void neu_Click(object sender, EventArgs e)
         {
             dungeonlevelbox.Text = 0.ToString();
             dungeonprogress.Value = 0;
+            shopform.Hide();
             health.Value = 100;
             special.Value = 100;
             int xp = Convert.ToInt32(xpbox.Text);
@@ -633,12 +635,12 @@ namespace DDD
             SoundPlayer audio = new SoundPlayer(DDD.Properties.Resources.NewDungeon);
             audio.Play();
         }
-
+        Shop shopform = new Shop();
         private void shop_Click(object sender, EventArgs e)
         {
             DDD.Properties.Settings.Default.Gold = goldbox.Text;
-            Shop frm = new Shop();
-            frm.Show();
+            Properties.Settings.Default.shopvisible = true;
+            shopform.Show();
         }
 
         private void dungeonfinish_Click(object sender, EventArgs e)
@@ -653,8 +655,40 @@ namespace DDD
             healthE.Value = 0;
         }
 
+        private void splashtimer_Tick(object sender, EventArgs e)
+        {
+            DDD.Properties.Settings.Default.OpacityStatus = 100;
+            splash.Hide();
+            music.Enabled = true;
+            splashtimer.Stop();
 
+        }
+
+        private void musicbox_MouseMove(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void savetimer_Tick(object sender, EventArgs e)
+        {
+            Speicher.Einstellungen.Default.Musik = musicbox.Checked;
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Speicher.Einstellungen.Default.Save();
+        }
+
+        private void close_Click(object sender, EventArgs e)
+        {
+            Close();
+            Speicher.Einstellungen.Default.Save();
+        }
     }
+
 }
+
+
+    
+
 
 

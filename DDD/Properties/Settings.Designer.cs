@@ -118,5 +118,41 @@ namespace DDD.Properties {
                 this["hpb"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double OpacityStatus {
+            get {
+                return ((double)(this["OpacityStatus"]));
+            }
+            set {
+                this["OpacityStatus"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public byte EinstellungMusik {
+            get {
+                return ((byte)(this["EinstellungMusik"]));
+            }
+            set {
+                this["EinstellungMusik"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool shopvisible {
+            get {
+                return ((bool)(this["shopvisible"]));
+            }
+            set {
+                this["shopvisible"] = value;
+            }
+        }
     }
 }

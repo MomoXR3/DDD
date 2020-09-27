@@ -42,12 +42,14 @@
             this.hpmcounter = new System.Windows.Forms.Label();
             this.hpbcounter = new System.Windows.Forms.Label();
             this.shopkeeper = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.close = new System.Windows.Forms.Button();
+            this.synctimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.shopkeeper)).BeginInit();
             this.SuspendLayout();
             // 
             // shopkeepersound
             // 
-            this.shopkeepersound.Enabled = true;
             this.shopkeepersound.Interval = 500;
             this.shopkeepersound.Tick += new System.EventHandler(this.shopkeepersound_Tick);
             // 
@@ -113,18 +115,18 @@
             // 
             // gold
             // 
-            this.gold.Font = new System.Drawing.Font("Overseer", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gold.Font = new System.Drawing.Font("Ink Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gold.Location = new System.Drawing.Point(6, 363);
             this.gold.Name = "gold";
-            this.gold.Size = new System.Drawing.Size(56, 34);
+            this.gold.Size = new System.Drawing.Size(72, 34);
             this.gold.TabIndex = 2;
             this.gold.Text = "Gold";
             this.gold.Click += new System.EventHandler(this.gold_Click);
             // 
             // goldbox
             // 
-            this.goldbox.Font = new System.Drawing.Font("Overseer", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.goldbox.Location = new System.Drawing.Point(68, 363);
+            this.goldbox.Font = new System.Drawing.Font("Ink Free", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goldbox.Location = new System.Drawing.Point(84, 363);
             this.goldbox.Name = "goldbox";
             this.goldbox.Size = new System.Drawing.Size(276, 34);
             this.goldbox.TabIndex = 2;
@@ -166,11 +168,38 @@
             this.shopkeeper.TabIndex = 0;
             this.shopkeeper.TabStop = false;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Ink Free", 27.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(419, 31);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(100, 46);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Shop";
+            // 
+            // close
+            // 
+            this.close.Location = new System.Drawing.Point(684, 746);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(104, 39);
+            this.close.TabIndex = 5;
+            this.close.Text = "Close";
+            this.close.UseVisualStyleBackColor = true;
+            this.close.Click += new System.EventHandler(this.close_Click);
+            // 
+            // synctimer
+            // 
+            this.synctimer.Enabled = true;
+            this.synctimer.Tick += new System.EventHandler(this.synctimer_Tick);
+            // 
             // Shop
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 797);
+            this.Controls.Add(this.close);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.hpbcounter);
             this.Controls.Add(this.hpmcounter);
             this.Controls.Add(this.hpscounter);
@@ -183,10 +212,20 @@
             this.Controls.Add(this.HPM);
             this.Controls.Add(this.HPS);
             this.Controls.Add(this.shopkeeper);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Shop";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Shop";
+            this.TopMost = true;
+            this.Load += new System.EventHandler(this.Shop_Load);
+            this.Shown += new System.EventHandler(this.Shop_Shown);
             ((System.ComponentModel.ISupportInitialize)(this.shopkeeper)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -205,5 +244,8 @@
         private System.Windows.Forms.Label hpscounter;
         private System.Windows.Forms.Label hpmcounter;
         private System.Windows.Forms.Label hpbcounter;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button close;
+        private System.Windows.Forms.Timer synctimer;
     }
 }

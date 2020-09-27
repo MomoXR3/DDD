@@ -102,6 +102,7 @@
             this.skillpointstimer = new System.Windows.Forms.Timer(this.components);
             this.dungeontimer = new System.Windows.Forms.Timer(this.components);
             this.debugbox = new System.Windows.Forms.GroupBox();
+            this.readOnlyTextBox1 = new System.Web.Management.ReadOnlyTextBox();
             this.button2 = new System.Windows.Forms.Button();
             this.debugtimer = new System.Windows.Forms.Timer(this.components);
             this.dungeonlevel = new System.Windows.Forms.Label();
@@ -112,6 +113,14 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.healthE = new System.Windows.Forms.ProgressBar();
             this.health = new System.Windows.Forms.ProgressBar();
+            this.splashtimer = new System.Windows.Forms.Timer(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
+            this.savetimer = new System.Windows.Forms.Timer(this.components);
+            this.savepath = new System.DirectoryServices.DirectoryEntry();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.directoryEntry1 = new System.DirectoryServices.DirectoryEntry();
+            this.close = new System.Windows.Forms.Button();
             this.spells.SuspendLayout();
             this.characterbox.SuspendLayout();
             this.inventarbox.SuspendLayout();
@@ -121,6 +130,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.enemyturn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
             // progressBar3
@@ -617,16 +627,16 @@
             // 
             // goldlabel
             // 
-            this.goldlabel.Font = new System.Drawing.Font("Overseer", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.goldlabel.Location = new System.Drawing.Point(19, 26);
+            this.goldlabel.Font = new System.Drawing.Font("Ink Free", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goldlabel.Location = new System.Drawing.Point(6, 26);
             this.goldlabel.Name = "goldlabel";
-            this.goldlabel.Size = new System.Drawing.Size(56, 34);
+            this.goldlabel.Size = new System.Drawing.Size(69, 34);
             this.goldlabel.TabIndex = 22;
             this.goldlabel.Text = "Gold";
             // 
             // goldbox
             // 
-            this.goldbox.Font = new System.Drawing.Font("Overseer", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.goldbox.Font = new System.Drawing.Font("Ink Free", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.goldbox.Location = new System.Drawing.Point(69, 26);
             this.goldbox.Name = "goldbox";
             this.goldbox.Size = new System.Drawing.Size(147, 34);
@@ -757,10 +767,10 @@
             this.musicbox.Text = "Musik";
             this.musicbox.UseVisualStyleBackColor = true;
             this.musicbox.CheckedChanged += new System.EventHandler(this.musicbox_CheckedChanged);
+            this.musicbox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.musicbox_MouseMove);
             // 
             // music
             // 
-            this.music.Enabled = true;
             this.music.Tick += new System.EventHandler(this.music_Tick);
             // 
             // deathtimer
@@ -770,7 +780,7 @@
             // 
             // die
             // 
-            this.die.Font = new System.Drawing.Font("Overseer", 80F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.die.Font = new System.Drawing.Font("Ink Free", 80.24999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.die.Location = new System.Drawing.Point(371, -5);
             this.die.Name = "die";
             this.die.Size = new System.Drawing.Size(698, 136);
@@ -781,7 +791,7 @@
             // 
             // restart
             // 
-            this.restart.Font = new System.Drawing.Font("Overseer", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.restart.Font = new System.Drawing.Font("Ink Free", 39.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.restart.Location = new System.Drawing.Point(565, 218);
             this.restart.Name = "restart";
             this.restart.Size = new System.Drawing.Size(312, 99);
@@ -829,6 +839,7 @@
             // 
             // debugbox
             // 
+            this.debugbox.Controls.Add(this.readOnlyTextBox1);
             this.debugbox.Controls.Add(this.killme);
             this.debugbox.Controls.Add(this.button2);
             this.debugbox.Controls.Add(this.dungeonfinish);
@@ -838,6 +849,17 @@
             this.debugbox.TabIndex = 20;
             this.debugbox.TabStop = false;
             this.debugbox.Text = "Debug";
+            // 
+            // readOnlyTextBox1
+            // 
+            this.readOnlyTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.readOnlyTextBox1.Location = new System.Drawing.Point(236, 19);
+            this.readOnlyTextBox1.Multiline = true;
+            this.readOnlyTextBox1.Name = "readOnlyTextBox1";
+            this.readOnlyTextBox1.ReadOnly = true;
+            this.readOnlyTextBox1.Size = new System.Drawing.Size(40, 36);
+            this.readOnlyTextBox1.TabIndex = 20;
+            this.readOnlyTextBox1.TabStop = false;
             // 
             // button2
             // 
@@ -856,19 +878,19 @@
             // 
             // dungeonlevel
             // 
-            this.dungeonlevel.Font = new System.Drawing.Font("Overseer", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dungeonlevel.Location = new System.Drawing.Point(606, 114);
+            this.dungeonlevel.Font = new System.Drawing.Font("Ink Free", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dungeonlevel.Location = new System.Drawing.Point(579, 114);
             this.dungeonlevel.Name = "dungeonlevel";
-            this.dungeonlevel.Size = new System.Drawing.Size(195, 45);
+            this.dungeonlevel.Size = new System.Drawing.Size(223, 45);
             this.dungeonlevel.TabIndex = 21;
             this.dungeonlevel.Text = "Dungeonlevel";
             // 
             // dungeonlevelbox
             // 
-            this.dungeonlevelbox.Font = new System.Drawing.Font("Overseer", 30F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dungeonlevelbox.Location = new System.Drawing.Point(807, 114);
+            this.dungeonlevelbox.Font = new System.Drawing.Font("Ink Free", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dungeonlevelbox.Location = new System.Drawing.Point(808, 114);
             this.dungeonlevelbox.Name = "dungeonlevelbox";
-            this.dungeonlevelbox.Size = new System.Drawing.Size(53, 45);
+            this.dungeonlevelbox.Size = new System.Drawing.Size(93, 45);
             this.dungeonlevelbox.TabIndex = 21;
             this.dungeonlevelbox.Text = "0";
             // 
@@ -936,11 +958,46 @@
             this.health.TabIndex = 1;
             this.health.Value = 100;
             // 
+            // splashtimer
+            // 
+            this.splashtimer.Enabled = true;
+            this.splashtimer.Interval = 5000;
+            this.splashtimer.Tick += new System.EventHandler(this.splashtimer_Tick);
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.ToolTipIcon = System.Windows.Forms.ToolTipIcon.Info;
+            // 
+            // fileSystemWatcher1
+            // 
+            this.fileSystemWatcher1.EnableRaisingEvents = true;
+            this.fileSystemWatcher1.SynchronizingObject = this;
+            // 
+            // savetimer
+            // 
+            this.savetimer.Enabled = true;
+            this.savetimer.Interval = 6000;
+            this.savetimer.Tick += new System.EventHandler(this.savetimer_Tick);
+            // 
+            // close
+            // 
+            this.close.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.close.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.close.Location = new System.Drawing.Point(1360, 12);
+            this.close.Name = "close";
+            this.close.Size = new System.Drawing.Size(75, 23);
+            this.close.TabIndex = 22;
+            this.close.Text = "Close";
+            this.toolTip1.SetToolTip(this.close, "Schließt die Anwendung");
+            this.close.UseVisualStyleBackColor = false;
+            this.close.Click += new System.EventHandler(this.close_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1447, 819);
+            this.Controls.Add(this.close);
             this.Controls.Add(this.dungeonlevelbox);
             this.Controls.Add(this.dungeonlevel);
             this.Controls.Add(this.debugbox);
@@ -951,8 +1008,6 @@
             this.Controls.Add(this.inventarbox);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.shop);
-            this.Controls.Add(this.neu);
             this.Controls.Add(this.hp);
             this.Controls.Add(this.hpe);
             this.Controls.Add(this.characterbox);
@@ -968,10 +1023,17 @@
             this.Controls.Add(this.healthE);
             this.Controls.Add(this.health);
             this.Controls.Add(this.restart);
+            this.Controls.Add(this.shop);
+            this.Controls.Add(this.neu);
+            this.DataBindings.Add(new System.Windows.Forms.Binding("Opacity", global::DDD.Properties.Settings.Default, "OpacityStatus", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
             this.Name = "Form1";
+            this.Opacity = global::DDD.Properties.Settings.Default.OpacityStatus;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.spells.ResumeLayout(false);
             this.spells.PerformLayout();
@@ -981,10 +1043,12 @@
             this.potions.ResumeLayout(false);
             this.potions.PerformLayout();
             this.debugbox.ResumeLayout(false);
+            this.debugbox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.yourturn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.enemyturn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1074,6 +1138,15 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label goldbox;
         private System.Windows.Forms.Label goldlabel;
+        private System.Windows.Forms.Timer splashtimer;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.IO.FileSystemWatcher fileSystemWatcher1;
+        private System.Windows.Forms.Timer savetimer;
+        private System.DirectoryServices.DirectoryEntry savepath;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.DirectoryServices.DirectoryEntry directoryEntry1;
+        private System.Windows.Forms.Button close;
+        private System.Web.Management.ReadOnlyTextBox readOnlyTextBox1;
     }
 }
 

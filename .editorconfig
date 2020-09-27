@@ -2,3 +2,6 @@
 
 # IDE0058: Der Ausdruckswert wird niemals verwendet.
 csharp_style_unused_value_expression_statement_preference = discard_variable:suggestion
+
+# IDE0022: Blocktextkörper für Methoden verwenden
+csharp_style_expression_bodied_methods = false:silent
